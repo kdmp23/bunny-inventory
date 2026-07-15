@@ -199,19 +199,169 @@ function useInventory(){
 
 function showLocations(){
 
-    app.innerHTML=`
-
+    let html = `
+    
     <div class="container">
 
-        <h2>Locations</h2>
+        <h2>${
+            currentMode === "receive"
+                ? "📥 Receive Inventory"
+                : "📤 Use Inventory"
+        }</h2>
 
         <p class="subtitle">
-            Coming Next
+            Select a Location
         </p>
+
+    `;
+
+    LOCATIONS.forEach(location => {
+
+        const count = inventory.filter(item =>
+            item.location === location
+        ).length;
+
+        let icon = "📦";
+
+        switch(location){
+
+            case "Shelf":
+                icon = "📦";
+                break;
+
+            case "Dry Cambros":
+                icon = "🟫";
+                break;
+
+            case "FOH Shelf":
+                icon = "🍽️";
+                break;
+
+            case "FOH":
+                icon = "🍴";
+                break;
+
+            case "Kitchen Fridge":
+                icon = "🧊";
+                break;
+
+            case "FOH Fridge":
+                icon = "🥤";
+                break;
+
+            case "Freezer":
+                icon = "❄️";
+                break;
+
+        }
+
+        html += `
+
+            <div
+                class="card"
+                onclick="showItems('${location}')"
+                style="cursor:pointer; margin-bottom:15px;">
+
+                <h3>${icon} ${location}</h3>
+
+                <p class="item-info">
+                    ${count} Item${count !== 1 ? "s" : ""}
+                </p>
+
+            </div>
+
+        `;
+
+    });
+
+    html += `
+
+        <button class="back"
+            onclick="showDashboard()">
+
+            ← Back
+
+        </button>
 
     </div>
 
     `;
+
+    app.innerHTML = html;
+
+}
+
+function showItems(location){
+
+    currentLocation = location;
+
+    let html = `
+
+    <div class="container">
+
+        <h2>${location}</h2>
+
+        <p class="subtitle">
+            Select an Item
+        </p>
+
+    `;
+
+    inventory
+        .filter(item => item.location === location)
+        .forEach(item => {
+
+            let status = "🟢";
+
+            if(item.quantity <= 0){
+
+                status = "🔴";
+
+            }else if(item.quantity <= item.minimum){
+
+                status = "🟡";
+
+            }
+
+            html += `
+
+                <div
+                    class="item"
+                    onclick="showUpdateItem(${item.id})">
+
+                    <div class="item-title">
+
+                        ${status} ${item.name}
+
+                    </div>
+
+                    <div class="item-info">
+
+                        ${item.quantity} ${item.unit}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    html += `
+
+        <button
+            class="back"
+            onclick="showLocations()">
+
+            ← Back
+
+        </button>
+
+    </div>
+
+    `;
+
+    app.innerHTML = html;
 
 }
 
@@ -238,5 +388,11 @@ function showActivity(){
     </div>
 
     `;
+
+}
+
+function showUpdateItem(id){
+
+    alert("Update screen coming next!");
 
 }
