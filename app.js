@@ -7,6 +7,7 @@ const app = document.getElementById("app");
 let currentEmployee = "";
 let currentMode = "";
 let currentLocation = "";
+let selectedAmount = 1;
 
 // =========================
 // LOCATIONS
@@ -393,6 +394,127 @@ function showActivity(){
 
 function showUpdateItem(id){
 
-    alert("Update screen coming next!");
+    const item = inventory.find(i => i.id === id);
+
+    selectedAmount = 1;
+
+    renderUpdateItem(item);
+
+}
+
+function renderUpdateItem(item){
+
+    app.innerHTML = `
+
+    <div class="container">
+
+        <h2>${item.name}</h2>
+
+        <p class="subtitle">
+            ${item.location}
+        </p>
+
+        <div class="card">
+
+            <h3>Current Stock</h3>
+
+            <h1>${item.quantity} ${item.unit}</h1>
+
+        </div>
+
+        <div class="card">
+
+            <h3>${
+                currentMode === "receive"
+                ? "Add"
+                : "Use"
+            }</h3>
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                margin-top:20px;
+            ">
+
+                <button
+                    style="width:70px"
+                    onclick="changeAmount(-1, ${item.id})">
+
+                    -
+
+                </button>
+
+                <h2>${selectedAmount}</h2>
+
+                <button
+                    style="width:70px"
+                    onclick="changeAmount(1, ${item.id})">
+
+                    +
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <button onclick="saveInventory(${item.id})">
+
+            Save
+
+        </button>
+
+        <button
+            class="back"
+            onclick="showItems('${item.location}')">
+
+            ← Back
+
+        </button>
+
+    </div>
+
+    `;
+
+}
+
+function changeAmount(change,id){
+
+    selectedAmount += change;
+
+    if(selectedAmount < 1){
+
+        selectedAmount = 1;
+
+    }
+
+    const item = inventory.find(i=>i.id===id);
+
+    renderUpdateItem(item);
+
+}
+
+function saveInventory(id){
+
+    const item = inventory.find(i=>i.id===id);
+
+    if(currentMode==="receive"){
+
+        item.quantity += selectedAmount;
+
+    }else{
+
+        item.quantity -= selectedAmount;
+
+        if(item.quantity < 0){
+
+            item.quantity = 0;
+
+        }
+
+    }
+
+    showItems(item.location);
 
 }
