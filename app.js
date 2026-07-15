@@ -1,5 +1,18 @@
 const app = document.getElementById("app");
 
+let currentEmployee = "";
+let inventoryMode = "";
+
+const LOCATIONS = [
+    "Shelf",
+    "Dry Cambros",
+    "FOH Shelf",
+    "FOH",
+    "Kitchen Fridge",
+    "FOH Fridge",
+    "Freezer"
+];
+
 showLogin();
 
 function showLogin() {
@@ -24,26 +37,26 @@ function showLogin() {
 
 function login() {
 
-    const code = document.getElementById("employeeCode").value;
+    const code = document.getElementById("employeeCode").value.trim();
 
-    if(code === ""){
+    if (code === "") {
         alert("Enter Employee Code");
         return;
     }
 
-    // Temporary login
-    showDashboard(code);
+    currentEmployee = code;
+
+    showDashboard();
 }
 
-function showDashboard(employee){
+function showDashboard() {
 
     app.innerHTML = `
-
         <div class="container">
 
             <h2>Welcome</h2>
 
-            <p>${employee}</p>
+            <p>${currentEmployee}</p>
 
             <button onclick="receiveInventory()">
                 📥 Receive Inventory
@@ -58,18 +71,50 @@ function showDashboard(employee){
             </button>
 
         </div>
-
     `;
 }
 
-function receiveInventory(){
-    alert("Coming Soon");
+function receiveInventory() {
+    inventoryMode = "Receive Inventory";
+    showLocations();
 }
 
-function useInventory(){
-    alert("Coming Soon");
+function useInventory() {
+    inventoryMode = "Use Inventory";
+    showLocations();
 }
 
-function activity(){
-    alert("Coming Soon");
+function showLocations() {
+
+    let buttons = "";
+
+    LOCATIONS.forEach(location => {
+        buttons += `
+            <button onclick="openLocation('${location}')">
+                ${location}
+            </button>
+        `;
+    });
+
+    app.innerHTML = `
+        <div class="container">
+
+            <h2>${inventoryMode}</h2>
+
+            ${buttons}
+
+            <button onclick="showDashboard()">
+                ← Back
+            </button>
+
+        </div>
+    `;
+}
+
+function openLocation(location) {
+    alert(location + " page coming next!");
+}
+
+function activity() {
+    alert("Activity page coming soon!");
 }
