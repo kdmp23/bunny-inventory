@@ -627,7 +627,7 @@ function renderUpdateItem(){
 
 function adjustAmount(amount){
 
-    selectedAmount = amount;
+    selectedAmount += amount;
 
     renderUpdateItem();
 
