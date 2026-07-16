@@ -554,9 +554,20 @@ function customAmount(id,value){
 
 function saveInventory(id){
 
-    const item = inventory.find(i=>i.id===id);
+    const item = inventory.find(i => i.id === id);
 
-    if(currentMode==="receive"){
+    if(currentMode === "use" && selectedAmount > item.quantity){
+
+        alert(
+            "Not enough inventory.\n\n" +
+            "Current: " + item.quantity + " " + item.unit
+        );
+
+        return;
+
+    }
+
+    if(currentMode === "receive"){
 
         item.quantity += selectedAmount;
 
@@ -564,13 +575,9 @@ function saveInventory(id){
 
         item.quantity -= selectedAmount;
 
-        if(item.quantity < 0){
-
-            item.quantity = 0;
-
-        }
-
     }
+
+    selectedAmount = 0;
 
     showItems(item.location);
 
