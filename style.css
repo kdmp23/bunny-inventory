@@ -250,3 +250,31 @@ button:active{
     font-size:14px;
 
 }
+
+.item-card{
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.item-card:active{
+
+    transform:scale(.98);
+
+}
+
+.item-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:20px;
+
+    margin-bottom:8px;
+
+}
