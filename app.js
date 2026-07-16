@@ -498,3 +498,132 @@ function showItems(location){
     app.innerHTML = html;
 
 }
+
+function showUpdateItem(id){
+
+    selectedItem = inventory.find(item => item.id === id);
+
+    selectedAmount = 0;
+
+    renderUpdateItem();
+
+}
+
+function renderUpdateItem(){
+
+    let newStock =
+        currentMode === "receive"
+        ? selectedItem.quantity + selectedAmount
+        : selectedItem.quantity - selectedAmount;
+
+    if(newStock < 0){
+
+        newStock = 0;
+
+    }
+
+    let statusClass = "green";
+
+    if(newStock <= 0){
+
+        statusClass = "red";
+
+    }
+    else if(newStock <= selectedItem.minimum){
+
+        statusClass = "yellow";
+
+    }
+
+    app.innerHTML = `
+
+    <div class="container">
+
+        <h1>
+
+            ${selectedItem.name}
+
+        </h1>
+
+        <p class="subtitle">
+
+            ${selectedItem.location}
+
+        </p>
+
+        <div class="card">
+
+            <h3>Current Stock</h3>
+
+            <h1>
+
+                ${selectedItem.quantity} ${selectedItem.unit}
+
+            </h1>
+
+        </div>
+
+        <div class="card">
+
+            <h3>New Stock</h3>
+
+            <h1 class="${statusClass}">
+
+                ${newStock} ${selectedItem.unit}
+
+            </h1>
+
+        </div>
+
+        <button onclick="changeAmount(1)">
+
+            +1
+
+        </button>
+
+        <button onclick="changeAmount(5)">
+
+            +5
+
+        </button>
+
+        <button onclick="changeAmount(10)">
+
+            +10
+
+        </button>
+
+        <button onclick="changeAmount(25)">
+
+            +25
+
+        </button>
+
+        <button onclick="saveInventory()">
+
+            Save
+
+        </button>
+
+        <button
+            class="back"
+            onclick="showItems(currentLocation)">
+
+            ← Back
+
+        </button>
+
+    </div>
+
+    `;
+
+}
+
+function changeAmount(amount){
+
+    selectedAmount = amount;
+
+    renderUpdateItem();
+
+}
+
