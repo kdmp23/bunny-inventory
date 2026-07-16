@@ -396,7 +396,7 @@ function showUpdateItem(id){
 
     const item = inventory.find(i => i.id === id);
 
-    selectedAmount = 1;
+    selectedAmount = 0;
 
     renderUpdateItem(item);
 
