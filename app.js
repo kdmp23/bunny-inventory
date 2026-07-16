@@ -16,7 +16,7 @@ let currentLocation = "";
 let selectedItem = null;
 let selectedAmount = 0;
 
-let isManager = false;
+let previousScreen = "";
 
 // ---------- LOCATIONS ----------
 
