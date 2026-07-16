@@ -11,7 +11,6 @@ const app = document.getElementById("app");
 let currentEmployee = "";
 let currentRole = "employee"; // employee | manager
 
-let currentMode = "";
 let currentLocation = "";
 
 let selectedItem = null;
