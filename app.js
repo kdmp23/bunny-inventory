@@ -18,6 +18,8 @@ let selectedAmount = 0;
 
 let previousScreen = "";
 
+let searchText = "";
+
 // ---------- LOCATIONS ----------
 
 const LOCATIONS = [
