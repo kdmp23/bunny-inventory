@@ -123,7 +123,7 @@ function showLogin(){
 
     <div class="container">
 
-        <h1>🍔 Bunny Inventory</h1>
+        <h1>Bunny Bubble Tea</h1>
 
         <p class="subtitle">
 
@@ -247,7 +247,7 @@ if(currentRole === "manager"){
 
     <div class="container">
 
-        <h1>🍔 Bunny Inventory</h1>
+        <h1>Bunny Bubble Tea</h1>
 
         <p class="subtitle">
 
