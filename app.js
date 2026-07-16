@@ -647,8 +647,7 @@ function renderUpdateItem(){
 
         <button
             class="back"
-            onclick="showItems(currentLocation)">
-
+            onclick="goBack()"
             ← Back
 
         </button>
@@ -677,6 +676,8 @@ function resetAdjustment(){
 
 
 function showAttention(){
+    
+    previousScreen = "attention";
 
     const outItems = inventory.filter(item =>
         item.quantity === 0
@@ -790,5 +791,19 @@ function showAttention(){
     `;
 
     app.innerHTML = html;
+
+}
+
+function goBack(){
+
+    if(previousScreen === "attention"){
+
+        showAttention();
+
+    }else{
+
+        showItems(currentLocation);
+
+    }
 
 }
