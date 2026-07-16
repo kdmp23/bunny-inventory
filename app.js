@@ -321,3 +321,180 @@ function showManager(){
     `;
 
 }
+
+// ======================================
+// LOCATIONS
+// ======================================
+
+function receiveInventory(){
+
+    currentMode = "receive";
+
+    showLocations();
+
+}
+
+function useInventory(){
+
+    currentMode = "use";
+
+    showLocations();
+
+}
+
+function showLocations(){
+
+    let html = `
+
+    <div class="container">
+
+        <h1>${
+            currentMode === "receive"
+            ? "📥 Receive Inventory"
+            : "📤 Use Inventory"
+        }</h1>
+
+        <p class="subtitle">
+
+            Select a Location
+
+        </p>
+
+    `;
+
+    LOCATIONS.forEach(location=>{
+
+        const count =
+            inventory.filter(item=>
+
+                item.location===location &&
+                item.active
+
+            ).length;
+
+        html += `
+
+        <div
+            class="card location-card"
+            onclick="showItems('${location}')">
+
+            <h2>
+
+                ${location}
+
+            </h2>
+
+            <p class="item-info">
+
+                ${count} Item${count!==1?"s":""}
+
+            </p>
+
+        </div>
+
+        `;
+
+    });
+
+    html += `
+
+        <button
+            class="back"
+            onclick="showDashboard()">
+
+            ← Back
+
+        </button>
+
+    </div>
+
+    `;
+
+    app.innerHTML = html;
+
+}
+
+function showItems(location){
+
+    currentLocation = location;
+
+    let html = `
+
+    <div class="container">
+
+        <h1>
+
+            ${location}
+
+        </h1>
+
+        <p class="subtitle">
+
+            Select an Item
+
+        </p>
+
+    `;
+
+    inventory
+        .filter(item =>
+            item.location === location &&
+            item.active
+        )
+        .forEach(item => {
+
+            let statusClass = "green";
+
+            if(item.quantity <= 0){
+
+                statusClass = "red";
+
+            }else if(item.quantity <= item.minimum){
+
+                statusClass = "yellow";
+
+            }
+
+            html += `
+
+            <div
+                class="card item-card"
+                onclick="showUpdateItem(${item.id})">
+
+                <div class="item-header">
+
+                    <span class="${statusClass}">●</span>
+
+                    <strong>${item.name}</strong>
+
+                </div>
+
+                <div class="item-info">
+
+                    ${item.quantity} ${item.unit}
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+    html += `
+
+        <button
+            class="back"
+            onclick="showLocations()">
+
+            ← Back
+
+        </button>
+
+    </div>
+
+    `;
+
+    app.innerHTML = html;
+
+}
