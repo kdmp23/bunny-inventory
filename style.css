@@ -336,3 +336,15 @@ button:active{
     margin:4px 0;
 
 }
+
+.search-button{
+
+    background:#1F2937;
+
+    color:#9CA3AF;
+
+    text-align:left;
+
+    font-weight:500;
+
+}
