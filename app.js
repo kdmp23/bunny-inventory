@@ -559,41 +559,31 @@ function renderUpdateItem(){
 
 </div>
     
-        <div class="card">
+     <div class="card">
 
-            <h3>Increase</h3>
+    <div class="quick-grid">
 
-            <div class="quick-grid">
+        <button onclick="adjustAmount(1)">+1</button>
 
-                <button onclick="adjustAmount(1)">+1</button>
+        <button onclick="adjustAmount(5)">+5</button>
 
-                <button onclick="adjustAmount(5)">+5</button>
+        <button onclick="adjustAmount(10)">+10</button>
 
-                <button onclick="adjustAmount(10)">+10</button>
+        <button onclick="adjustAmount(25)">+25</button>
 
-                <button onclick="adjustAmount(25)">+25</button>
+        <div class="divider"></div>
 
-            </div>
+        <button onclick="adjustAmount(-1)">-1</button>
 
-            <h3 style="margin-top:20px">
+        <button onclick="adjustAmount(-5)">-5</button>
 
-                Decrease
+        <button onclick="adjustAmount(-10)">-10</button>
 
-            </h3>
+        <button onclick="adjustAmount(-25)">-25</button>
 
-            <div class="quick-grid">
+    </div>
 
-                <button onclick="adjustAmount(-1)">-1</button>
-
-                <button onclick="adjustAmount(-5)">-5</button>
-
-                <button onclick="adjustAmount(-10)">-10</button>
-
-                <button onclick="adjustAmount(-25)">-25</button>
-
-            </div>
-
-        </div>
+</div>
 
 <button
     class="back"
