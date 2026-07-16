@@ -665,6 +665,12 @@ function renderUpdateItem(){
         </button>
 
     </div>
+    
+    <div id="toast" class="toast">
+
+    ✓ Inventory Updated
+
+</div>
 
     `;
 
