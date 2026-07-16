@@ -177,3 +177,63 @@ function login(){
     showDashboard();
 
 }
+
+// ======================================
+// DASHBOARD
+// ======================================
+
+function showDashboard(){
+
+    let managerButtons = "";
+
+    if(currentRole === "manager"){
+
+        managerButtons = `
+
+            <button onclick="showManager()">
+
+                ⚙️ Manager
+
+            </button>
+
+        `;
+
+    }
+
+    app.innerHTML = `
+
+    <div class="container">
+
+        <h1>🍔 Bunny Inventory</h1>
+
+        <p class="subtitle">
+
+            Welcome, ${currentEmployee}
+
+        </p>
+
+        <button onclick="receiveInventory()">
+
+            📥 Receive Inventory
+
+        </button>
+
+        <button onclick="useInventory()">
+
+            📤 Use Inventory
+
+        </button>
+
+        <button onclick="showActivity()">
+
+            📋 Activity
+
+        </button>
+
+        ${managerButtons}
+
+    </div>
+
+    `;
+
+}
