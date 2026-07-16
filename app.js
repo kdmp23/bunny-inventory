@@ -525,50 +525,40 @@ function renderUpdateItem(){
 
         </p>
 
-        <div class="card">
+      <div class="card stock-preview">
 
-            <h3>Current Stock</h3>
+    <div class="stock-number">
 
-            <h1>
+        ${selectedItem.quantity} ${selectedItem.unit}
 
-                ${selectedItem.quantity}
-                ${selectedItem.unit}
+    </div>
 
-            </h1>
+    <div class="adjustment ${
+        selectedAmount > 0
+            ? "green"
+            : selectedAmount < 0
+                ? "red"
+                : ""
+    }">
 
-        </div>
+        ${
+            selectedAmount > 0
+                ? "+"
+                : ""
+        }${selectedAmount} ${selectedItem.unit}
 
-        <div class="card">
+    </div>
 
-            <h3>Adjustment</h3>
+    <hr>
 
-            <h1>
+    <div class="stock-number ${statusClass}">
 
-                ${
-                    selectedAmount>0
-                    ? "+"
-                    : ""
-                }${selectedAmount}
+        ${newStock} ${selectedItem.unit}
 
-                ${selectedItem.unit}
+    </div>
 
-            </h1>
-
-        </div>
-
-        <div class="card">
-
-            <h3>New Stock</h3>
-
-            <h1 class="${statusClass}">
-
-                ${newStock}
-                ${selectedItem.unit}
-
-            </h1>
-
-        </div>
-
+</div>
+    
         <div class="card">
 
             <h3>Increase</h3>
