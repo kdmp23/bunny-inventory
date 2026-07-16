@@ -826,6 +826,14 @@ function showSearch(){
 
     <div class="container">
 
+        <button
+            class="back"
+            onclick="exitSearch()">
+
+            ← Back
+
+        </button>
+
         <h1>Search</h1>
 
         <input
@@ -840,14 +848,6 @@ function showSearch(){
         <div id="searchResults">
 
         </div>
-
-        <button
-            class="back"
-            onclick="exitSearch()">
-
-            ← Back
-
-        </button>
 
     </div>
 
