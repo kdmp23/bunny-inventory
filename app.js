@@ -822,8 +822,6 @@ function showSearch(){
     
     previousScreen = "search";
 
-    searchText = "";
-
     app.innerHTML = `
 
     <div class="container">
@@ -834,6 +832,7 @@ function showSearch(){
             id="searchInput"
             type="text"
             placeholder="Search inventory..."
+            value="${searchText}"
             autofocus
             oninput="updateSearch()"
         >
@@ -844,7 +843,7 @@ function showSearch(){
 
         <button
             class="back"
-            onclick="showDashboard()">
+            onclick="exitSearch()">
 
             ← Back
 
@@ -921,3 +920,10 @@ function updateSearch(){
 
 }
 
+function exitSearch(){
+
+    searchText = "";
+
+    showDashboard();
+
+}
