@@ -653,7 +653,8 @@ function renderUpdateItem(){
 
         <button
             class="back"
-            onclick="goBack()"
+            onclick="goBack()">
+            
             ← Back
 
         </button>
