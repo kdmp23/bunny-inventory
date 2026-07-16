@@ -520,15 +520,31 @@ function renderUpdateItem(item){
 
 }
 
-function changeAmount(change,id){
+function setAmount(amount,id){
 
-    selectedAmount += change;
+    selectedAmount = amount;
 
-    if(selectedAmount < 1){
+    const item = inventory.find(i=>i.id===id);
 
-        selectedAmount = 1;
+    renderUpdateItem(item);
+
+}
+
+function customAmount(id,value){
+
+    selectedAmount = Number(value);
+
+    if(isNaN(selectedAmount) || selectedAmount<0){
+
+        selectedAmount=0;
 
     }
+
+    const item = inventory.find(i=>i.id===id);
+
+    renderUpdateItem(item);
+
+}
 
     const item = inventory.find(i=>i.id===id);
 
