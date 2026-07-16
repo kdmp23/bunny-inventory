@@ -442,6 +442,8 @@ function showLocations(){
 }
 
 function showItems(location){
+    
+    previousScreen = "items";
 
     currentLocation = location;
 
