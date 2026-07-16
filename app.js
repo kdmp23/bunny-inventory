@@ -674,9 +674,8 @@ function resetAdjustment(){
 
 }
 
-
 function showAttention(){
-    
+
     previousScreen = "attention";
 
     const outItems = inventory.filter(item =>
@@ -696,17 +695,21 @@ function showAttention(){
 
     `;
 
-    if(outItems.length){
+    // -------------------------
+    // OUT OF STOCK
+    // -------------------------
+
+    if(outItems.length > 0){
 
         html += `
 
         <div class="card">
 
-            <h2>🔴 Out of Stock</h2>
+            <h2>🔴 Out of Stock (${outItems.length})</h2>
 
         `;
 
-        outItems.forEach(item=>{
+        outItems.forEach(item => {
 
             html += `
 
@@ -714,7 +717,25 @@ function showAttention(){
                 class="item"
                 onclick="showUpdateItem(${item.id})">
 
-                ${item.name}
+                <div class="item-header">
+
+                    <span class="red">●</span>
+
+                    <strong>${item.name}</strong>
+
+                </div>
+
+                <div class="item-info">
+
+                    ${item.location}
+
+                </div>
+
+                <div class="item-info">
+
+                    ${item.quantity} ${item.unit}
+
+                </div>
 
             </div>
 
@@ -726,17 +747,21 @@ function showAttention(){
 
     }
 
-    if(lowItems.length){
+    // -------------------------
+    // LOW STOCK
+    // -------------------------
+
+    if(lowItems.length > 0){
 
         html += `
 
         <div class="card">
 
-            <h2>🟡 Low Stock</h2>
+            <h2>🟡 Low Stock (${lowItems.length})</h2>
 
         `;
 
-        lowItems.forEach(item=>{
+        lowItems.forEach(item => {
 
             html += `
 
@@ -744,7 +769,25 @@ function showAttention(){
                 class="item"
                 onclick="showUpdateItem(${item.id})">
 
-                ${item.name}
+                <div class="item-header">
+
+                    <span class="yellow">●</span>
+
+                    <strong>${item.name}</strong>
+
+                </div>
+
+                <div class="item-info">
+
+                    ${item.location}
+
+                </div>
+
+                <div class="item-info">
+
+                    ${item.quantity} ${item.unit}
+
+                </div>
 
             </div>
 
@@ -755,6 +798,10 @@ function showAttention(){
         html += `</div>`;
 
     }
+
+    // -------------------------
+    // EVERYTHING GOOD
+    // -------------------------
 
     if(outItems.length === 0 && lowItems.length === 0){
 
@@ -775,6 +822,10 @@ function showAttention(){
         `;
 
     }
+
+    // -------------------------
+    // BACK BUTTON
+    // -------------------------
 
     html += `
 
