@@ -186,6 +186,46 @@ function login(){
 function showDashboard(){
 
     let managerButtons = "";
+    
+    let attentionCard = "";
+
+if(currentRole === "manager"){
+
+    const outCount =
+        inventory.filter(i => i.quantity === 0).length;
+
+    const lowCount =
+        inventory.filter(i =>
+            i.quantity > 0 &&
+            i.quantity <= i.minimum
+        ).length;
+
+    attentionCard = `
+
+        <div
+            class="card"
+            onclick="showAttention()"
+            style="cursor:pointer;">
+
+            <h2>⚠️ Attention Required</h2>
+
+            <p class="item-info">
+
+                ${outCount} Out of Stock
+
+            </p>
+
+            <p class="item-info">
+
+                ${lowCount} Low Stock
+
+            </p>
+
+        </div>
+
+    `;
+
+}
 
     if(currentRole === "manager"){
 
@@ -226,6 +266,8 @@ function showDashboard(){
         </button>
 
         ${managerButtons}
+        
+        ${attentionCard}
 
     </div>
 
@@ -628,5 +670,123 @@ function resetAdjustment(){
     selectedAmount = 0;
 
     renderUpdateItem();
+
+}
+
+
+function showAttention(){
+
+    const outItems = inventory.filter(item =>
+        item.quantity === 0
+    );
+
+    const lowItems = inventory.filter(item =>
+        item.quantity > 0 &&
+        item.quantity <= item.minimum
+    );
+
+    let html = `
+
+    <div class="container">
+
+        <h1>Attention Required</h1>
+
+    `;
+
+    if(outItems.length){
+
+        html += `
+
+        <div class="card">
+
+            <h2>🔴 Out of Stock</h2>
+
+        `;
+
+        outItems.forEach(item=>{
+
+            html += `
+
+            <div
+                class="item"
+                onclick="showUpdateItem(${item.id})">
+
+                ${item.name}
+
+            </div>
+
+            `;
+
+        });
+
+        html += `</div>`;
+
+    }
+
+    if(lowItems.length){
+
+        html += `
+
+        <div class="card">
+
+            <h2>🟡 Low Stock</h2>
+
+        `;
+
+        lowItems.forEach(item=>{
+
+            html += `
+
+            <div
+                class="item"
+                onclick="showUpdateItem(${item.id})">
+
+                ${item.name}
+
+            </div>
+
+            `;
+
+        });
+
+        html += `</div>`;
+
+    }
+
+    if(outItems.length === 0 && lowItems.length === 0){
+
+        html += `
+
+        <div class="card">
+
+            <h2>✅ Inventory Healthy</h2>
+
+            <p class="item-info">
+
+                No items require attention.
+
+            </p>
+
+        </div>
+
+        `;
+
+    }
+
+    html += `
+
+        <button
+            class="back"
+            onclick="showDashboard()">
+
+            ← Back
+
+        </button>
+
+    </div>
+
+    `;
+
+    app.innerHTML = html;
 
 }
