@@ -16,6 +16,8 @@ let currentLocation = "";
 let selectedItem = null;
 let selectedAmount = 0;
 
+let isManager = false;
+
 // ---------- LOCATIONS ----------
 
 const LOCATIONS = [
