@@ -565,21 +565,21 @@ function renderUpdateItem(){
 
         <button onclick="adjustAmount(1)">+1</button>
 
+        <button onclick="adjustAmount(3)">+3</button>
+
         <button onclick="adjustAmount(5)">+5</button>
 
         <button onclick="adjustAmount(10)">+10</button>
-
-        <button onclick="adjustAmount(25)">+25</button>
 
         <div class="divider"></div>
 
         <button onclick="adjustAmount(-1)">-1</button>
 
+        <button onclick="adjustAmount(-3)">-3</button>
+
         <button onclick="adjustAmount(-5)">-5</button>
 
         <button onclick="adjustAmount(-10)">-10</button>
-
-        <button onclick="adjustAmount(-25)">-25</button>
 
     </div>
 
