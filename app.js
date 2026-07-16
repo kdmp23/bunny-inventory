@@ -641,3 +641,10 @@ function adjustAmount(amount){
 
 }
 
+function resetAdjustment(){
+
+    selectedAmount = 0;
+
+    renderUpdateItem();
+
+}
