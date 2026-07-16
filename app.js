@@ -331,11 +331,11 @@ function showLocations(){
 
     <div class="container">
 
-        <h1>${
-            currentMode === "receive"
-            ? "📥 Receive Inventory"
-            : "📤 Use Inventory"
-        }</h1>
+       <h1>
+
+    Inventory
+
+</h1>
 
         <p class="subtitle">
 
