@@ -975,6 +975,8 @@ function saveInventory(){
     // Reset adjustment
     selectedAmount = 0;
 
+showToast("✓ Inventory Updated");
+
     // Go back where the user came from
     goBack();
 
