@@ -253,14 +253,14 @@ if(currentRole === "manager"){
 
             Welcome, ${currentEmployee}
 
-        </p>
-
 <input
     id="searchInput"
     type="text"
     placeholder="Search inventory..."
     oninput="searchInventory()"
 >
+
+        </p>
 
 <button onclick="showInventory()">
 
