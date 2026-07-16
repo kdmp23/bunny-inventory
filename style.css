@@ -278,3 +278,15 @@ button:active{
     margin-bottom:8px;
 
 }
+
+.quick-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
