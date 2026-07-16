@@ -20,6 +20,8 @@ let previousScreen = "";
 
 let searchText = "";
 
+let activityLog = [];
+
 // ---------- LOCATIONS ----------
 
 const LOCATIONS = [
