@@ -255,6 +255,13 @@ if(currentRole === "manager"){
 
         </p>
 
+<input
+    id="searchInput"
+    type="text"
+    placeholder="Search inventory..."
+    oninput="searchInventory()"
+>
+
 <button onclick="showInventory()">
 
     📦 Inventory
@@ -799,5 +806,117 @@ function goBack(){
         showItems(currentLocation);
 
     }
+
+}
+
+function searchInventory(){
+
+    searchText = document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    if(searchText === ""){
+
+        showDashboard();
+
+        return;
+
+    }
+
+    showSearchResults();
+
+}
+
+function showSearchResults(){
+
+    let html = `
+
+    <div class="container">
+
+        <h1>Search</h1>
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="Search inventory..."
+            value="${searchText}"
+            oninput="searchInventory()"
+            autofocus
+        >
+
+    `;
+
+    const results = inventory.filter(item =>
+
+        item.active &&
+
+        (
+
+            item.name.toLowerCase().includes(searchText)
+
+            ||
+
+            item.location.toLowerCase().includes(searchText)
+
+        )
+
+    );
+
+    if(results.length === 0){
+
+        html += `
+
+        <div class="card">
+
+            <h2>No items found</h2>
+
+            <p class="item-info">
+
+                Try another search.
+
+            </p>
+
+        </div>
+
+        `;
+
+    }else{
+
+        results.forEach(item=>{
+
+            let color="green";
+
+            if(item.quantity<=0){
+
+                color="red";
+
+            }else if(item.quantity<=item.minimum){
+
+                color="yellow";
+
+            }
+
+            html += createItemCard(item,color);
+
+        });
+
+    }
+
+    html += `
+
+        <button
+            class="back"
+            onclick="showDashboard()">
+
+            ← Back
+
+        </button>
+
+    </div>
+
+    `;
+
+    app.innerHTML = html;
 
 }
