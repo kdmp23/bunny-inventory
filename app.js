@@ -605,6 +605,14 @@ function renderUpdateItem(){
 
         </div>
 
+<button
+    class="back"
+    onclick="resetAdjustment()">
+
+    Reset
+
+</button>
+
         <button onclick="saveInventory()">
 
             Save
