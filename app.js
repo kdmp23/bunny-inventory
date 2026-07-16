@@ -404,14 +404,46 @@ function showUpdateItem(id){
 
 function renderUpdateItem(item){
 
-    app.innerHTML = `
+    let newQuantity;
+
+    if(currentMode==="receive"){
+
+        newQuantity = item.quantity + selectedAmount;
+
+    }else{
+
+        newQuantity = item.quantity - selectedAmount;
+
+        if(newQuantity < 0){
+
+            newQuantity = 0;
+
+        }
+
+    }
+
+    let status="green";
+
+    if(newQuantity<=0){
+
+        status="red";
+
+    }else if(newQuantity<=item.minimum){
+
+        status="yellow";
+
+    }
+
+    app.innerHTML=`
 
     <div class="container">
 
         <h2>${item.name}</h2>
 
         <p class="subtitle">
+
             ${item.location}
+
         </p>
 
         <div class="card">
@@ -424,38 +456,47 @@ function renderUpdateItem(item){
 
         <div class="card">
 
-            <h3>${
-                currentMode === "receive"
-                ? "Add"
-                : "Use"
-            }</h3>
+            <h3>Quick Amount</h3>
 
-            <div style="
-                display:flex;
-                justify-content:space-between;
-                align-items:center;
-                margin-top:20px;
-            ">
+            <button onclick="setAmount(1,${item.id})">
+                ${currentMode==="receive"?"+1":"-1"}
+            </button>
 
-                <button
-                    style="width:70px"
-                    onclick="changeAmount(-1, ${item.id})">
+            <button onclick="setAmount(5,${item.id})">
+                ${currentMode==="receive"?"+5":"-5"}
+            </button>
 
-                    -
+            <button onclick="setAmount(10,${item.id})">
+                ${currentMode==="receive"?"+10":"-10"}
+            </button>
 
-                </button>
+            <button onclick="setAmount(25,${item.id})">
+                ${currentMode==="receive"?"+25":"-25"}
+            </button>
 
-                <h2>${selectedAmount}</h2>
+        </div>
 
-                <button
-                    style="width:70px"
-                    onclick="changeAmount(1, ${item.id})">
+        <div class="card">
 
-                    +
+            <h3>Amount</h3>
 
-                </button>
+            <input
+                type="number"
+                value="${selectedAmount}"
+                oninput="customAmount(${item.id},this.value)"
+            >
 
-            </div>
+        </div>
+
+        <div class="card">
+
+            <h3>New Stock</h3>
+
+            <h1 class="${status}">
+
+                ${newQuantity} ${item.unit}
+
+            </h1>
 
         </div>
 
