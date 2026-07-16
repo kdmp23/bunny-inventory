@@ -211,17 +211,11 @@ function showDashboard(){
 
         </p>
 
-        <button onclick="receiveInventory()">
+<button onclick="showInventory()">
 
-            📥 Receive Inventory
+    📦 Inventory
 
-        </button>
-
-        <button onclick="useInventory()">
-
-            📤 Use Inventory
-
-        </button>
+</button>
 
         <button onclick="showActivity()">
 
