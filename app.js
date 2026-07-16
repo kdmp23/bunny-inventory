@@ -253,14 +253,15 @@ if(currentRole === "manager"){
 
             Welcome, ${currentEmployee}
 
-<input
-    id="searchInput"
-    type="text"
-    placeholder="Search inventory..."
-    oninput="searchInventory()"
->
-
         </p>
+
+<button
+    class="search-button"
+    onclick="showSearch()">
+
+    🔍 Search Inventory
+
+</button>
 
 <button onclick="showInventory()">
 
@@ -810,28 +811,11 @@ function goBack(){
 
 }
 
-function searchInventory(){
+function showSearch(){
 
-    searchText = document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase();
+    searchText = "";
 
-    if(searchText === ""){
-
-        showDashboard();
-
-        return;
-
-    }
-
-    showSearchResults();
-
-}
-
-function showSearchResults(){
-
-    let html = `
+    app.innerHTML = `
 
     <div class="container">
 
@@ -841,12 +825,38 @@ function showSearchResults(){
             id="searchInput"
             type="text"
             placeholder="Search inventory..."
-            value="${searchText}"
-            oninput="searchInventory()"
             autofocus
+            oninput="updateSearch()"
         >
 
+        <div id="searchResults">
+
+        </div>
+
+        <button
+            class="back"
+            onclick="showDashboard()">
+
+            ← Back
+
+        </button>
+
+    </div>
+
     `;
+
+    updateSearch();
+
+}
+
+function updateSearch(){
+
+    searchText = document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let html = "";
 
     const results = inventory.filter(item =>
 
@@ -866,19 +876,13 @@ function showSearchResults(){
 
     if(results.length === 0){
 
-        html += `
+        html = `
 
-        <div class="card">
+            <div class="card">
 
-            <h2>No items found</h2>
+                No items found.
 
-            <p class="item-info">
-
-                Try another search.
-
-            </p>
-
-        </div>
+            </div>
 
         `;
 
@@ -886,15 +890,15 @@ function showSearchResults(){
 
         results.forEach(item=>{
 
-            let color="green";
+            let color = "green";
 
-            if(item.quantity<=0){
+            if(item.quantity <= 0){
 
-                color="red";
+                color = "red";
 
-            }else if(item.quantity<=item.minimum){
+            }else if(item.quantity <= item.minimum){
 
-                color="yellow";
+                color = "yellow";
 
             }
 
@@ -904,20 +908,7 @@ function showSearchResults(){
 
     }
 
-    html += `
-
-        <button
-            class="back"
-            onclick="showDashboard()">
-
-            ← Back
-
-        </button>
-
-    </div>
-
-    `;
-
-    app.innerHTML = html;
+    document.getElementById("searchResults").innerHTML = html;
 
 }
+
