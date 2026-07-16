@@ -801,19 +801,26 @@ function showAttention(){
 
 function goBack(){
 
-    if(previousScreen === "attention"){
+    switch(previousScreen){
 
-        showAttention();
+        case "attention":
+            showAttention();
+            break;
 
-    }else{
+        case "search":
+            showSearch();
+            break;
 
-        showItems(currentLocation);
+        default:
+            showItems(currentLocation);
 
     }
 
 }
 
 function showSearch(){
+    
+    previousScreen = "search";
 
     searchText = "";
 
