@@ -929,3 +929,47 @@ function exitSearch(){
     showDashboard();
 
 }
+
+function saveInventory(){
+
+    const newStock = Math.max(
+        0,
+        selectedItem.quantity + selectedAmount
+    );
+
+    // Nothing changed
+    if(newStock === selectedItem.quantity){
+
+        return;
+
+    }
+
+    // Update inventory
+    selectedItem.quantity = newStock;
+
+    // Save activity
+    activityLog.unshift({
+
+        employee: currentEmployee,
+
+        item: selectedItem.name,
+
+        location: selectedItem.location,
+
+        change: selectedAmount,
+
+        quantity: newStock,
+
+        unit: selectedItem.unit,
+
+        time: new Date()
+
+    });
+
+    // Reset adjustment
+    selectedAmount = 0;
+
+    // Go back where the user came from
+    goBack();
+
+}
