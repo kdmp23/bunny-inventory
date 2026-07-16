@@ -290,3 +290,21 @@ button:active{
     margin-top:15px;
 
 }
+
+.adjustment{
+
+    font-size:36px;
+
+    font-weight:700;
+
+    margin:12px 0;
+
+}
+
+.quick-grid button{
+
+    padding:14px;
+
+    font-size:28px;
+
+}
