@@ -231,17 +231,7 @@ function showDashboard(){
 
 }
 
-function receiveInventory(){
-
-    currentMode = "receive";
-
-    showLocations();
-
-}
-
-function useInventory(){
-
-    currentMode = "use";
+function showInventory(){
 
     showLocations();
 
