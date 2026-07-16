@@ -237,3 +237,87 @@ function showDashboard(){
     `;
 
 }
+
+function receiveInventory(){
+
+    currentMode = "receive";
+
+    showLocations();
+
+}
+
+function useInventory(){
+
+    currentMode = "use";
+
+    showLocations();
+
+}
+
+function showActivity(){
+
+    app.innerHTML = `
+
+    <div class="container">
+
+        <h1>📋 Activity</h1>
+
+        <p class="subtitle">
+
+            Coming Soon
+
+        </p>
+
+        <button
+            class="back"
+            onclick="showDashboard()">
+
+            ← Back
+
+        </button>
+
+    </div>
+
+    `;
+
+}
+
+function showManager(){
+
+    app.innerHTML = `
+
+    <div class="container">
+
+        <h1>⚙️ Manager</h1>
+
+        <button>
+
+            📦 Manage Inventory
+
+        </button>
+
+        <button>
+
+            👥 Employees
+
+        </button>
+
+        <button>
+
+            📊 Reports
+
+        </button>
+
+        <button
+            class="back"
+            onclick="showDashboard()">
+
+            ← Back
+
+        </button>
+
+    </div>
+
+    `;
+
+}
