@@ -305,9 +305,9 @@ button:active{
 
 .quick-grid button{
 
-    padding:14px;
+    padding:12px;
 
-    font-size:28px;
+    font-size:26px;
 
 }
 
@@ -322,5 +322,17 @@ button:active{
     font-size:36px;
 
     font-weight:700;
+
+}
+
+.divider{
+
+    grid-column:1 / -1;
+
+    height:2px;
+
+    background:#374151;
+
+    margin:4px 0;
 
 }
