@@ -255,13 +255,15 @@ if(currentRole === "manager"){
 
         </p>
 
-<button
-    class="search-button"
+<div
+    class="search-bar"
     onclick="showSearch()">
 
-    🔍 Search Inventory
+    <span>🔍</span>
 
-</button>
+    <span>Search Inventory</span>
+
+</div>
 
 <button onclick="showInventory()">
 
