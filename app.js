@@ -482,6 +482,7 @@ function showItems(location){
 
 }
 
+
 function showUpdateItem(id){
 
     selectedItem = inventory.find(item => item.id === id);
@@ -494,16 +495,11 @@ function showUpdateItem(id){
 
 function renderUpdateItem(){
 
-    let newStock =
-        currentMode === "receive"
-        ? selectedItem.quantity + selectedAmount
-        : selectedItem.quantity - selectedAmount;
-
-    if(newStock < 0){
-
-        newStock = 0;
-
-    }
+    const newStock =
+        Math.max(
+            0,
+            selectedItem.quantity + selectedAmount
+        );
 
     let statusClass = "green";
 
@@ -511,8 +507,7 @@ function renderUpdateItem(){
 
         statusClass = "red";
 
-    }
-    else if(newStock <= selectedItem.minimum){
+    }else if(newStock <= selectedItem.minimum){
 
         statusClass = "yellow";
 
@@ -522,11 +517,7 @@ function renderUpdateItem(){
 
     <div class="container">
 
-        <h1>
-
-            ${selectedItem.name}
-
-        </h1>
+        <h1>${selectedItem.name}</h1>
 
         <p class="subtitle">
 
@@ -540,7 +531,26 @@ function renderUpdateItem(){
 
             <h1>
 
-                ${selectedItem.quantity} ${selectedItem.unit}
+                ${selectedItem.quantity}
+                ${selectedItem.unit}
+
+            </h1>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Adjustment</h3>
+
+            <h1>
+
+                ${
+                    selectedAmount>0
+                    ? "+"
+                    : ""
+                }${selectedAmount}
+
+                ${selectedItem.unit}
 
             </h1>
 
@@ -552,35 +562,48 @@ function renderUpdateItem(){
 
             <h1 class="${statusClass}">
 
-                ${newStock} ${selectedItem.unit}
+                ${newStock}
+                ${selectedItem.unit}
 
             </h1>
 
         </div>
 
-        <button onclick="changeAmount(1)">
+        <div class="card">
 
-            +1
+            <h3>Increase</h3>
 
-        </button>
+            <div class="quick-grid">
 
-        <button onclick="changeAmount(5)">
+                <button onclick="adjustAmount(1)">+1</button>
 
-            +5
+                <button onclick="adjustAmount(5)">+5</button>
 
-        </button>
+                <button onclick="adjustAmount(10)">+10</button>
 
-        <button onclick="changeAmount(10)">
+                <button onclick="adjustAmount(25)">+25</button>
 
-            +10
+            </div>
 
-        </button>
+            <h3 style="margin-top:20px">
 
-        <button onclick="changeAmount(25)">
+                Decrease
 
-            +25
+            </h3>
 
-        </button>
+            <div class="quick-grid">
+
+                <button onclick="adjustAmount(-1)">-1</button>
+
+                <button onclick="adjustAmount(-5)">-5</button>
+
+                <button onclick="adjustAmount(-10)">-10</button>
+
+                <button onclick="adjustAmount(-25)">-25</button>
+
+            </div>
+
+        </div>
 
         <button onclick="saveInventory()">
 
@@ -602,7 +625,7 @@ function renderUpdateItem(){
 
 }
 
-function changeAmount(amount){
+function adjustAmount(amount){
 
     selectedAmount = amount;
 
