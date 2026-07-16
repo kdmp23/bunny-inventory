@@ -353,21 +353,6 @@ function showManager(){
 // LOCATIONS
 // ======================================
 
-function receiveInventory(){
-
-    currentMode = "receive";
-
-    showLocations();
-
-}
-
-function useInventory(){
-
-    currentMode = "use";
-
-    showLocations();
-
-}
 
 function showLocations(){
 
@@ -441,6 +426,40 @@ function showLocations(){
 
 }
 
+function createItemCard(item, statusColor){
+
+    return `
+
+    <div
+        class="item"
+        onclick="showUpdateItem(${item.id})">
+
+        <div class="item-header">
+
+            <span class="${statusColor}">●</span>
+
+            <strong>${item.name}</strong>
+
+        </div>
+
+        <div class="item-info">
+
+            ${item.location}
+
+        </div>
+
+        <div class="item-info">
+
+            ${item.quantity} ${item.unit}
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+
 function showItems(location){
     
     previousScreen = "items";
@@ -472,41 +491,19 @@ function showItems(location){
         )
         .forEach(item => {
 
-            let statusClass = "green";
+        let statusClass = "green";
 
-            if(item.quantity <= 0){
+if(item.quantity <= 0){
 
-                statusClass = "red";
+    statusClass = "red";
 
-            }else if(item.quantity <= item.minimum){
+}else if(item.quantity <= item.minimum){
 
-                statusClass = "yellow";
+    statusClass = "yellow";
 
-            }
+}
 
-            html += `
-
-            <div
-                class="card item-card"
-                onclick="showUpdateItem(${item.id})">
-
-                <div class="item-header">
-
-                    <span class="${statusClass}">●</span>
-
-                    <strong>${item.name}</strong>
-
-                </div>
-
-                <div class="item-info">
-
-                    ${item.quantity} ${item.unit}
-
-                </div>
-
-            </div>
-
-            `;
+html += createItemCard(item, statusClass);
 
         });
 
@@ -709,39 +706,11 @@ function showAttention(){
 
         `;
 
-        outItems.forEach(item => {
+        outItems.forEach(item=>{
 
-            html += `
+    html += createItemCard(item,"red");
 
-            <div
-                class="item"
-                onclick="showUpdateItem(${item.id})">
-
-                <div class="item-header">
-
-                    <span class="red">●</span>
-
-                    <strong>${item.name}</strong>
-
-                </div>
-
-                <div class="item-info">
-
-                    ${item.location}
-
-                </div>
-
-                <div class="item-info">
-
-                    ${item.quantity} ${item.unit}
-
-                </div>
-
-            </div>
-
-            `;
-
-        });
+});
 
         html += `</div>`;
 
@@ -761,39 +730,11 @@ function showAttention(){
 
         `;
 
-        lowItems.forEach(item => {
+        lowItems.forEach(item=>{
 
-            html += `
+    html += createItemCard(item,"yellow");
 
-            <div
-                class="item"
-                onclick="showUpdateItem(${item.id})">
-
-                <div class="item-header">
-
-                    <span class="yellow">●</span>
-
-                    <strong>${item.name}</strong>
-
-                </div>
-
-                <div class="item-info">
-
-                    ${item.location}
-
-                </div>
-
-                <div class="item-info">
-
-                    ${item.quantity} ${item.unit}
-
-                </div>
-
-            </div>
-
-            `;
-
-        });
+});
 
         html += `</div>`;
 
