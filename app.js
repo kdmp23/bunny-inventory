@@ -827,7 +827,7 @@ function showSearch(){
     <div class="container">
 
         <button
-            class="back"
+            class="top-back"
             onclick="exitSearch()">
 
             ← Back
