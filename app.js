@@ -1,8 +1,19 @@
-// ======================================
-// BUNNY INVENTORY v1.0
-// ======================================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
-// ---------- APP ----------
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDpDkjGsPG5Oa1lwaox6PHIKpmIvJ-bRxE",
+    authDomain: "bunny-inventory.firebaseapp.com",
+    projectId: "bunny-inventory",
+    storageBucket: "bunny-inventory.firebasestorage.app",
+    messagingSenderId: "1020869773891",
+    appId: "1:1020869773891:web:a374dc995cb0adda13a2f6"
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+
+const db = getFirestore(firebaseApp);
 
 const app = document.getElementById("app");
 
