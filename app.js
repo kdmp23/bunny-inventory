@@ -299,9 +299,11 @@ function showActivity(){
 
     let html = `
 
+    <div class="container">
+
         <button
             class="top-back"
-            onclick="showDashboard()">
+            onclick="goBack()">
 
             ← Back
 
