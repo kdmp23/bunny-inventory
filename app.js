@@ -300,7 +300,7 @@ function showActivity(){
     let html = `
 
         <button
-            class="back-button"
+            class="top-back"
             onclick="showDashboard()">
 
             ← Back
