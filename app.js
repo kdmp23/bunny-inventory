@@ -297,29 +297,76 @@ function showInventory(){
 
 function showActivity(){
 
-    app.innerHTML = `
-
-    <div class="container">
-
-        <h1>📋 Activity</h1>
-
-        <p class="subtitle">
-
-            Coming Soon
-
-        </p>
+    let html = `
 
         <button
-            class="back"
+            class="back-button"
             onclick="showDashboard()">
 
             ← Back
 
         </button>
 
-    </div>
+        <h2>Activity</h2>
 
     `;
+
+    if(activityLog.length === 0){
+
+        html += `
+
+            <div class="empty-state">
+
+                No activity yet.
+
+            </div>
+
+        `;
+
+    }else{
+
+        activityLog.forEach(entry =>{
+
+            const time = entry.time.toLocaleTimeString([],{
+                hour:"numeric",
+                minute:"2-digit"
+            });
+
+            html += `
+
+                <div class="activity-card">
+
+                    <div class="activity-header">
+
+                        <strong>${entry.employee}</strong>
+
+                        <span>${time}</span>
+
+                    </div>
+
+                    <div class="activity-change">
+
+                        ${entry.change > 0 ? "+" : ""}${entry.change}
+                        ${entry.unit}
+                        ${entry.item}
+
+                    </div>
+
+                    <div class="activity-location">
+
+                        ${entry.location}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+    app.innerHTML = html;
 
 }
 
