@@ -463,8 +463,45 @@ button:active{
 
 .empty-state{
 
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
     text-align:center;
+
+    margin-top:60px;
+
     color:#9CA3AF;
-    padding:40px 0;
+
+}
+
+.empty-icon{
+
+    font-size:52px;
+
+    margin-bottom:18px;
+
+}
+
+.empty-state h3{
+
+    margin:0;
+
+    color:white;
+
+    font-size:22px;
+
+}
+
+.empty-state p{
+
+    margin-top:10px;
+
+    max-width:250px;
+
+    line-height:1.5;
+
+    color:#9CA3AF;
 
 }
