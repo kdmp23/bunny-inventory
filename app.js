@@ -903,6 +903,12 @@ function showAttention(){
 
     `;
 
+html += `
+
+    </div>
+
+`;
+
     app.innerHTML = html;
 
 }
