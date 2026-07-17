@@ -315,13 +315,25 @@ function showActivity(){
 
         html += `
 
-            <div class="empty-state">
+    <div class="empty-state">
 
-                No activity yet.
+        <div class="empty-icon">
 
-            </div>
+            📋
 
-        `;
+        </div>
+
+        <h3>No activity yet</h3>
+
+        <p>
+
+            Inventory updates will appear here.
+
+        </p>
+
+    </div>
+
+`;
 
     }else{
 
