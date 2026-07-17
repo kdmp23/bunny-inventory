@@ -303,7 +303,7 @@ function showActivity(){
 
         <button
             class="top-back"
-            onclick="goBack()">
+            onclick="showDashboard()">
 
             ← Back
 
