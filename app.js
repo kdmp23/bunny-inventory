@@ -13,7 +13,7 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 
-const db = getFirestore(firebaseApp);
+window.db = getFirestore(firebaseApp);
 
 const app = document.getElementById("app");
 
