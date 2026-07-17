@@ -1,3 +1,26 @@
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDpDkjGsPG5Oa1lwaox6PHIKpmIvJ-bRxE",
+    authDomain: "bunny-inventory.firebaseapp.com",
+    projectId: "bunny-inventory",
+    storageBucket: "bunny-inventory.firebasestorage.app",
+    messagingSenderId: "1020869773891",
+    appId: "1:1020869773891:web:a374dc995cb0adda13a2f6",
+    measurementId: "G-1WSS8R0ESN"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 
 const app = document.getElementById("app");
 
@@ -1107,3 +1130,32 @@ function showToast(message){
 
 }
 
+window.login = login;
+
+window.showAttention = showAttention;
+
+window.showManager = showManager;
+
+window.showSearch = showSearch;
+
+window.showInventory = showInventory;
+
+window.showDashboard = showDashboard;
+
+window.showItems = showItems;
+
+window.showActivity = showActivity;
+
+window.showUpdateItem = showUpdateItem;
+
+window.showLocations = showLocations;
+
+window.adjustAmount = adjustAmount;
+
+window.resetAdjustment = resetAdjustment;
+
+window.saveInventory = saveInventory;
+
+window.goBack = goBack;
+
+window.exitSearch = exitSearch;
