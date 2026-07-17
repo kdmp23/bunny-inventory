@@ -396,6 +396,14 @@ function showManager(){
 
     <div class="container">
 
+        <button
+            class="top-back"
+            onclick="showDashboard()">
+
+            ← Back
+
+        </button>
+
         <h1>⚙️ Manager</h1>
 
         <button>
@@ -440,6 +448,14 @@ function showLocations(){
     let html = `
 
     <div class="container">
+    
+            <button
+            class="top-back"
+            onclick="showDashboard()">
+
+            ← Back
+
+        </button>
 
        <h1>
 
@@ -550,6 +566,14 @@ function showItems(location){
     let html = `
 
     <div class="container">
+
+        <button
+            class="top-back"
+            onclick="showLocations()">
+
+            ← Back
+
+        </button>
 
         <h1>
 
