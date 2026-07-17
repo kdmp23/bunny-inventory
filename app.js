@@ -309,7 +309,7 @@ function showActivity(){
 
         </button>
 
-        <h2>Activity</h2>
+        <h1>Activity</h1>
 
     `;
 
@@ -379,6 +379,12 @@ function showActivity(){
         });
 
     }
+    
+    html += `
+
+    </div>
+
+`;
 
     app.innerHTML = html;
 
