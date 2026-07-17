@@ -1,4 +1,5 @@
 import {
+    getFirestore,
     collection,
     addDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
@@ -1134,6 +1135,23 @@ function showToast(message){
     },1200);
 
 }
+
+async function uploadInventory() {
+
+    for (const item of inventory) {
+
+        await addDoc(
+            collection(db, "inventory"),
+            item
+        );
+
+    }
+
+    console.log("Inventory uploaded!");
+
+}
+
+window.uploadInventory = uploadInventory;
 
 window.login = login;
 
