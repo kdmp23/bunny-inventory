@@ -426,3 +426,45 @@ button:active{
     opacity:1;
 
 }
+
+.activity-card{
+
+    background:#1F2937;
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:14px;
+
+}
+
+.activity-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+    font-size:15px;
+
+}
+
+.activity-change{
+
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:6px;
+
+}
+
+.activity-location{
+
+    color:#9CA3AF;
+    font-size:14px;
+
+}
+
+.empty-state{
+
+    text-align:center;
+    color:#9CA3AF;
+    padding:40px 0;
+
+}
