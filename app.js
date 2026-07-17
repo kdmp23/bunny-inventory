@@ -419,12 +419,6 @@ function showManager(){
 
         </button>
 
-        <button>
-
-            📊 Reports
-
-        </button>
-
         <button
             class="back"
             onclick="showDashboard()">
