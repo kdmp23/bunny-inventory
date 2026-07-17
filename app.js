@@ -31,7 +31,8 @@ const LOCATIONS = [
     "FOH",
     "Kitchen Fridge",
     "FOH Fridge",
-    "Freezer"
+    "Freezer",
+    "Miscellaneous"
 ];
 
 // ---------- SAMPLE EMPLOYEES ----------
@@ -799,6 +800,14 @@ function showAttention(){
     let html = `
 
     <div class="container">
+
+        <button
+            class="top-back"
+            onclick="showDashboard()">
+
+            ← Back
+
+        </button>
 
         <h1>Attention Required</h1>
 
