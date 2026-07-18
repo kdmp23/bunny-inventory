@@ -117,24 +117,6 @@ let inventory = [
 
 ];
 
-async function uploadInventory(){
-
-    for(const item of inventory){
-
-        await setDoc(
-
-            doc(db, "inventory", item.id.toString()),
-
-            item
-
-        );
-
-    }
-
-    alert("Inventory uploaded!");
-
-}
-
 async function loadInventory(){
 
     const snapshot = await getDocs(
