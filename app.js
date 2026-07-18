@@ -189,7 +189,7 @@ async function login(){
     }
 
     const employeeDoc = await getDoc(
-        doc(db, "employees", code)
+        doc(db, "employee", code)
     );
 
     if(!employeeDoc.exists()){
