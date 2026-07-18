@@ -136,6 +136,7 @@ async function uploadInventory() {
 
 }
 
+
 async function loadInventory(){
 
     const snapshot = await getDocs(
