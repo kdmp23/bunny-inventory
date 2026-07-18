@@ -63,59 +63,7 @@ const LOCATIONS = [
     "Miscellaneous"
 ];
 
-let inventory = [
-
-    {
-        id:1,
-        name:"Chicken Breast",
-        quantity:42,
-        unit:"lb",
-        minimum:10,
-        location:"Kitchen Fridge",
-        active:true
-    },
-
-    {
-        id:2,
-        name:"Mozzarella",
-        quantity:6,
-        unit:"lb",
-        minimum:10,
-        location:"Kitchen Fridge",
-        active:true
-    },
-
-    {
-        id:3,
-        name:"Heavy Cream",
-        quantity:0,
-        unit:"qt",
-        minimum:2,
-        location:"Kitchen Fridge",
-        active:true
-    },
-
-    {
-        id:4,
-        name:"French Fries",
-        quantity:5,
-        unit:"Case",
-        minimum:2,
-        location:"Freezer",
-        active:true
-    },
-
-    {
-        id:5,
-        name:"Canola Oil",
-        quantity:8,
-        unit:"Gal",
-        minimum:2,
-        location:"Shelf",
-        active:true
-    }
-
-];
+let inventory = [];
 
 async function uploadInventory() {
 
@@ -163,6 +111,13 @@ showLogin();
 // ======================================
 // LOGIN
 // ======================================
+
+async function start() {
+    await loadInventory();
+    showLogin();
+}
+
+start();
 
 function showLogin(){
 
@@ -1091,7 +1046,7 @@ function exitSearch(){
 
 }
 
-function saveInventory(){
+async function saveInventory(){
 
     const newStock = Math.max(
         0,
@@ -1107,6 +1062,13 @@ function saveInventory(){
 
     // Update inventory
     selectedItem.quantity = newStock;
+
+await updateDoc(
+    doc(db, "inventory", selectedItem.id.toString()),
+    {
+        quantity: newStock
+    }
+);
 
     // Save activity
     activityLog.unshift({
