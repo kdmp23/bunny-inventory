@@ -3,8 +3,11 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/fireba
 
 import {
     getFirestore,
+    collection,
+    getDocs,
     doc,
-    getDoc
+    getDoc,
+    updateDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -59,62 +62,23 @@ const LOCATIONS = [
     "Miscellaneous"
 ];
 
-// ---------- SAMPLE INVENTORY ----------
-// Later this comes from Firebase
+let inventory = [];
 
-const inventory = [
+async function loadInventory(){
 
-    {
-        id:1,
-        name:"Chicken Breast",
-        quantity:42,
-        unit:"lb",
-        minimum:10,
-        location:"Kitchen Fridge",
-        active:true
-    },
+    const snapshot = await getDocs(
+        collection(db, "inventory")
+    );
 
-    {
-        id:2,
-        name:"Mozzarella",
-        quantity:6,
-        unit:"lb",
-        minimum:10,
-        location:"Kitchen Fridge",
-        active:true
-    },
+    inventory = [];
 
-    {
-        id:3,
-        name:"Heavy Cream",
-        quantity:0,
-        unit:"qt",
-        minimum:2,
-        location:"Kitchen Fridge",
-        active:true
-    },
+    snapshot.forEach(doc => {
 
-    {
-        id:4,
-        name:"French Fries",
-        quantity:5,
-        unit:"Case",
-        minimum:2,
-        location:"Freezer",
-        active:true
-    },
+        inventory.push(doc.data());
 
-    {
-        id:5,
-        name:"Canola Oil",
-        quantity:8,
-        unit:"Gal",
-        minimum:2,
-        location:"Shelf",
-        active:true
-    }
+    });
 
-];
+}
 
 // ---------- START ----------
 
