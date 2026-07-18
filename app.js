@@ -9,7 +9,9 @@ import {
     getDoc,
     updateDoc,
     setDoc,
-    onSnapshot
+    onSnapshot,
+    getAuth,
+    signInAnonymously
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -30,7 +32,8 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 
-const db = getFirestore(firebaseApp);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
 const app = document.getElementById("app");
 
@@ -161,11 +164,24 @@ showLogin();
 // LOGIN
 // ======================================
 
-function start() {
+async function start() {
 
-    loadInventory();
+    try {
 
-    showLogin();
+        await signInAnonymously(auth);
+
+        console.log("Signed in anonymously.");
+
+        loadInventory();
+
+        showLogin();
+
+    }
+    catch (error) {
+
+        console.error("Anonymous auth failed:", error);
+
+    }
 
 }
 
