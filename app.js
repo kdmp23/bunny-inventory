@@ -9,10 +9,13 @@ import {
     getDoc,
     updateDoc,
     setDoc,
-    onSnapshot,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+import {
     getAuth,
     signInAnonymously
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
 const firebaseConfig = {
 
@@ -32,8 +35,8 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
-const auth = getAuth(app);
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
 
 const app = document.getElementById("app");
 
@@ -132,10 +135,6 @@ switch(currentScreen){
         showActivity();
         break;
 
-    case "update":
-        renderUpdateItem();
-        break;
-
 case "update":
 
     if (selectedItem) {
@@ -154,10 +153,6 @@ case "update":
     });
 
 }
-
-// ---------- START ----------
-
-showLogin();
 
 
 // ======================================
