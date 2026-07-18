@@ -121,7 +121,11 @@ async function uploadInventory() {
 
     const ref = doc(db, "inventory", "1");
 
-    alert("Created doc reference");
+    await setDoc(ref, {
+        test: true
+    });
+
+    alert("Uploaded");
 
 }
 
