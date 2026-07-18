@@ -63,7 +63,7 @@ const LOCATIONS = [
     "Miscellaneous"
 ];
 
-const inventory = [
+let inventory = [
 
     {
         id:1,
