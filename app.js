@@ -175,29 +175,32 @@ function showLogin(){
 
 }
 
-function login(){
+async function login(){
 
     const code = document
         .getElementById("employeeCode")
         .value
         .trim();
 
-    if(code===""){
+    if(code === ""){
 
         return;
 
     }
 
-    const employee =
-        employees.find(e=>e.code===code);
+    const employeeDoc = await getDoc(
+        doc(db, "employees", code)
+    );
 
-    if(!employee){
+    if(!employeeDoc.exists()){
 
         alert("Employee not found");
 
         return;
 
     }
+
+    const employee = employeeDoc.data();
 
     currentEmployee = employee.name;
 
