@@ -1135,23 +1135,6 @@ function showToast(message){
 
 }
 
-async function uploadInventory() {
-
-    for (const item of inventory) {
-
-        await addDoc(
-            collection(db, "inventory"),
-            item
-        );
-
-    }
-
-    console.log("Inventory uploaded!");
-
-}
-
-window.uploadInventory = uploadInventory;
-
 window.login = login;
 
 window.showAttention = showAttention;
