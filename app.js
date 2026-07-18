@@ -119,13 +119,20 @@ let inventory = [
 
 async function uploadInventory() {
 
-    const ref = doc(db, "inventory", "1");
+    for (const item of inventory) {
 
-    await setDoc(ref, {
-        test: true
-    });
+        console.log(item);
 
-    alert("Uploaded");
+        await setDoc(
+            doc(db, "inventory", item.id.toString()),
+            {
+                id: item.id
+            }
+        );
+
+    }
+
+    alert("Done");
 
 }
 
