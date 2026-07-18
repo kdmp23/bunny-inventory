@@ -117,6 +117,10 @@ let inventory = [
 
 ];
 
+async function uploadInventory() {
+    alert("uploadInventory loaded");
+}
+
 async function loadInventory(){
 
     const snapshot = await getDocs(
