@@ -1167,4 +1167,6 @@ window.goBack = goBack;
 
 window.exitSearch = exitSearch;
 
+window.loadInventory = loadInventory;
+
 window.uploadInventory = uploadInventory;
