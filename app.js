@@ -8,6 +8,7 @@ import {
     doc,
     getDoc,
     updateDoc
+    setDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -62,7 +63,77 @@ const LOCATIONS = [
     "Miscellaneous"
 ];
 
-let inventory = [];
+const inventory = [
+
+    {
+        id:1,
+        name:"Chicken Breast",
+        quantity:42,
+        unit:"lb",
+        minimum:10,
+        location:"Kitchen Fridge",
+        active:true
+    },
+
+    {
+        id:2,
+        name:"Mozzarella",
+        quantity:6,
+        unit:"lb",
+        minimum:10,
+        location:"Kitchen Fridge",
+        active:true
+    },
+
+    {
+        id:3,
+        name:"Heavy Cream",
+        quantity:0,
+        unit:"qt",
+        minimum:2,
+        location:"Kitchen Fridge",
+        active:true
+    },
+
+    {
+        id:4,
+        name:"French Fries",
+        quantity:5,
+        unit:"Case",
+        minimum:2,
+        location:"Freezer",
+        active:true
+    },
+
+    {
+        id:5,
+        name:"Canola Oil",
+        quantity:8,
+        unit:"Gal",
+        minimum:2,
+        location:"Shelf",
+        active:true
+    }
+
+];
+
+async function uploadInventory(){
+
+    for(const item of inventory){
+
+        await setDoc(
+
+            doc(db, "inventory", item.id.toString()),
+
+            item
+
+        );
+
+    }
+
+    alert("Inventory uploaded!");
+
+}
 
 async function loadInventory(){
 
@@ -1113,3 +1184,5 @@ window.saveInventory = saveInventory;
 window.goBack = goBack;
 
 window.exitSearch = exitSearch;
+
+window.uploadInventory = uploadInventory;
