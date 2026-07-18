@@ -420,14 +420,6 @@ function showManager(){
             👥 Employees
 
         </button>
-        
-        <button onclick="uploadInventory()">
-    Upload Inventory
-</button>
-
-<button onclick="loadInventory()">
-    Load Inventory
-</button>
 
         <button
             class="back"
