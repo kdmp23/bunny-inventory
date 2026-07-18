@@ -1162,3 +1162,5 @@ window.exitSearch = exitSearch;
 window.loadInventory = loadInventory;
 
 window.uploadInventory = uploadInventory;
+
+window.updateSearch = updateSearch;
