@@ -8,7 +8,8 @@ import {
     doc,
     getDoc,
     updateDoc,
-    setDoc
+    setDoc,
+    onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -86,18 +87,21 @@ async function uploadInventory() {
 
 window.uploadInventory = uploadInventory;
 
+function loadInventory() {
 
-async function loadInventory(){
+    onSnapshot(collection(db, "inventory"), (snapshot) => {
 
-    const snapshot = await getDocs(
-        collection(db, "inventory")
-    );
+        inventory = [];
 
-    inventory = [];
+        snapshot.forEach(doc => {
+            inventory.push(doc.data());
+        });
 
-    snapshot.forEach(doc => {
+        console.log("Inventory updated!");
 
-        inventory.push(doc.data());
+        if(currentEmployee !== ""){
+            showDashboard();
+        }
 
     });
 
@@ -112,9 +116,12 @@ showLogin();
 // LOGIN
 // ======================================
 
-async function start() {
-    await loadInventory();
+function start() {
+
+    loadInventory();
+
     showLogin();
+
 }
 
 start();
