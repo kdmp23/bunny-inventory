@@ -50,6 +50,8 @@ let searchText = "";
 
 let activityLog = [];
 
+let currentScreen = "login";
+
 // ---------- LOCATIONS ----------
 
 const LOCATIONS = [
@@ -99,9 +101,52 @@ function loadInventory() {
 
         console.log("Inventory updated!");
 
-        if(currentEmployee !== ""){
-            showDashboard();
-        }
+        if(currentEmployee === "") return;
+
+switch(currentScreen){
+
+    case "dashboard":
+        showDashboard();
+        break;
+
+    case "locations":
+        showLocations();
+        break;
+
+    case "items":
+        showItems(currentLocation);
+        break;
+
+    case "search":
+        showSearch();
+        break;
+
+    case "attention":
+        showAttention();
+        break;
+
+    case "activity":
+        showActivity();
+        break;
+
+    case "update":
+        renderUpdateItem();
+        break;
+
+case "update":
+
+    if (selectedItem) {
+
+        selectedItem = inventory.find(
+            item => item.id === selectedItem.id
+        );
+
+        renderUpdateItem();
+    }
+
+    break;
+
+}
 
     });
 
@@ -198,6 +243,8 @@ async function login(){
 // ======================================
 
 function showDashboard(){
+
+currentScreen = "dashboard";
 
     let managerButtons = "";
     
@@ -306,6 +353,8 @@ function showInventory(){
 }
 
 function showActivity(){
+    
+    currentScreen = "activity";
 
     let html = `
 
@@ -448,6 +497,8 @@ function showManager(){
 
 
 function showLocations(){
+    
+    currentScreen = "locations";
 
     let html = `
 
@@ -563,6 +614,8 @@ function createItemCard(item, statusColor){
 
 function showItems(location){
     
+    currentScreen = "items";
+    
     previousScreen = "items";
 
     currentLocation = location;
@@ -636,6 +689,8 @@ html += createItemCard(item, statusClass);
 
 
 function showUpdateItem(id){
+    
+    currentScreen = "update";
 
     selectedItem = inventory.find(item => item.id === id);
 
@@ -788,6 +843,8 @@ function resetAdjustment(){
 }
 
 function showAttention(){
+    
+    currentScreen = "attention";
 
     previousScreen = "attention";
 
@@ -936,6 +993,8 @@ function goBack(){
 }
 
 function showSearch(){
+    
+    currentScreen = "search";
     
     previousScreen = "search";
 
