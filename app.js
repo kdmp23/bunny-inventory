@@ -125,16 +125,18 @@ async function uploadInventory() {
 
         await setDoc(
             doc(db, "inventory", item.id.toString()),
-            {
-                id: item.id
-            }
+            item
         );
+
+        console.log("Uploaded", item.name);
 
     }
 
     alert("Done");
 
 }
+
+window.uploadInventory = uploadInventory;
 
 
 async function loadInventory(){
