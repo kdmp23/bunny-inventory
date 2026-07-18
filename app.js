@@ -48,33 +48,15 @@ let activityLog = [];
 // ---------- LOCATIONS ----------
 
 const LOCATIONS = [
-    "Shelf",
-    "Dry Cambros",
+    
+    "FOH Fridge",
     "FOH Shelf",
     "FOH",
     "Kitchen Fridge",
-    "FOH Fridge",
+    "Shelf",
+    "Dry Cambros",
     "Freezer",
     "Miscellaneous"
-];
-
-// ---------- SAMPLE EMPLOYEES ----------
-// Later these come from Firebase
-
-const employees = [
-
-    {
-        code:"1234",
-        name:"Manager",
-        role:"manager"
-    },
-
-    {
-        code:"1235",
-        name:"Employee",
-        role:"employee"
-    }
-
 ];
 
 // ---------- SAMPLE INVENTORY ----------
