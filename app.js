@@ -118,7 +118,11 @@ let inventory = [
 ];
 
 async function uploadInventory() {
-    alert("uploadInventory loaded");
+
+    const ref = doc(db, "inventory", "1");
+
+    alert("Created doc reference");
+
 }
 
 async function loadInventory(){
