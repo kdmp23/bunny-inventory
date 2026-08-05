@@ -715,7 +715,7 @@ function showUpdateItem(id){
     
     currentScreen = "update";
 
-    selectedItem = inventory.find(item => item.id == id);
+    selectedItem = inventory.find(item => item.id === id);
 
     selectedAmount = 0;
 
