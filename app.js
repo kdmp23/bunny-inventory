@@ -496,11 +496,9 @@ function showManager(){
 
 </button>
 
-        <button>
-
-            👥 Employees
-
-        </button>
+      <button onclick="showEmployees()">
+    👥 Employees
+</button>
 
         <button
             class="back"
@@ -1497,6 +1495,122 @@ function showEditItem(id) {
 
 }
 
+function showEmployees() {
+
+    let html = `
+
+    <div class="container">
+
+        <button
+            class="top-back"
+            onclick="showManager()">
+
+            ← Back
+
+        </button>
+
+        <h1>Employees</h1>
+
+        <button onclick="showAddEmployee()">
+
+            ➕ Add Employee
+
+        </button>
+
+    `;
+
+    employees.forEach(employee => {
+
+        html += `
+
+        <div
+            class="item"
+            onclick="showEditEmployee('${employee.id}')">
+
+            <strong>${employee.name}</strong>
+
+            <div class="item-info">
+
+                ${employee.role}
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    html += `
+
+    </div>
+
+    `;
+
+    app.innerHTML = html;
+
+}
+
+function showAddEmployee(employee = null) {
+
+    app.innerHTML = `
+
+    <div class="container">
+
+        <button
+            class="top-back"
+            onclick="showEmployees()">
+
+            ← Back
+
+        </button>
+
+        <h1>${employee ? "Edit Employee" : "Add Employee"}</h1>
+
+        <input
+            id="employeeName"
+            placeholder="Employee Name"
+            value="${employee ? employee.name : ""}"
+        >
+
+        <input
+            id="employeeCode"
+            placeholder="Employee Code"
+            value="${employee ? employee.code : ""}"
+        >
+
+        <select id="employeeRole">
+
+            <option
+                value="employee"
+                ${employee?.role === "employee" ? "selected" : ""}>
+
+                Employee
+
+            </option>
+
+            <option
+                value="manager"
+                ${employee?.role === "manager" ? "selected" : ""}>
+
+                Manager
+
+            </option>
+
+        </select>
+
+        <button onclick="saveEmployee(${employee ? `'${employee.id}'` : "null"})">
+
+            ${employee ? "Save Changes" : "Add Employee"}
+
+        </button>
+
+    </div>
+
+    `;
+
+}
+
 window.login = login;
 
 window.showAttention = showAttention;
@@ -1540,5 +1654,9 @@ window.showEditItem = showEditItem;
 window.showEditItems = showEditItems;
 
 window.showAddItem = showAddItem;
+
+window.showEmployees = showEmployees;
+
+window.showAddEmployee = showAddEmployee;
 
 window.showManageInventory = showManageInventory;
