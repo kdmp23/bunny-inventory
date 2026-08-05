@@ -1344,7 +1344,7 @@ function showAddItem(item = null) {
 
 }
 
-async function addItem() {
+async function addItem(id = null) {
 
     const name =
         document.getElementById("itemName")
@@ -1382,7 +1382,8 @@ async function addItem() {
     }
 
     const exists = inventory.some(item =>
-        item.name.toLowerCase() === name.toLowerCase()
+        item.name.toLowerCase() === name.toLowerCase() &&
+        item.id !== id
     );
 
     if (exists) {
@@ -1393,26 +1394,41 @@ async function addItem() {
 
     }
 
-    await addDoc(
-        collection(db, "inventory"),
-        {
+    const itemData = {
 
-            name,
+        name,
 
-            quantity,
+        quantity,
 
-            minimum,
+        minimum,
 
-            unit,
+        unit,
 
-            location,
+        location,
 
-            active: true
+        active: true
 
-        }
-    );
+    };
 
-    showToast("✓ Item Added");
+    if (id) {
+
+        await updateDoc(
+            doc(db, "inventory", id),
+            itemData
+        );
+
+        showToast("✓ Item Updated");
+
+    } else {
+
+        await addDoc(
+            collection(db, "inventory"),
+            itemData
+        );
+
+        showToast("✓ Item Added");
+
+    }
 
     showManageInventory();
 
