@@ -182,6 +182,8 @@ async function start() {
         loadInventory();
         
         loadActivity();
+        
+        loadEmployees();
 
         showLogin();
 
@@ -1672,6 +1674,25 @@ async function saveEmployee(id = null) {
     }
 
     showEmployees();
+
+}
+
+function loadEmployees() {
+
+    onSnapshot(collection(db, "employee"), (snapshot) => {
+
+        employees = [];
+
+        snapshot.forEach(doc => {
+
+            employees.push({
+                ...doc.data(),
+                id: doc.id
+            });
+
+        });
+
+    });
 
 }
 
