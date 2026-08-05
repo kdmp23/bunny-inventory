@@ -614,7 +614,7 @@ function createItemCard(item, statusColor){
 
     <div
         class="item"
-        onclick="showUpdateItem(${item.id})">
+        onclick="showUpdateItem('${item.id}')">
 
         <div class="item-header">
 
