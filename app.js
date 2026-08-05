@@ -171,6 +171,8 @@ async function start() {
         console.log("Signed in anonymously.");
 
         loadInventory();
+        
+        loadActivity();
 
         showLogin();
 
@@ -1142,8 +1144,9 @@ await updateDoc(
     }
 );
 
-    // Save activity
-    activityLog.unshift({
+    await addDoc(
+    collection(db, "activity"),
+    {
 
         employee: currentEmployee,
 
@@ -1157,9 +1160,10 @@ await updateDoc(
 
         unit: selectedItem.unit,
 
-        time: new Date()
+        time: serverTimestamp()
 
-    });
+    }
+);
 
     // Reset adjustment
     selectedAmount = 0;
@@ -1198,6 +1202,28 @@ function showToast(message){
         },300);
 
     },1200);
+
+}
+
+function loadActivity(){
+
+    onSnapshot(collection(db, "activity"), (snapshot)=>{
+
+        activityLog = [];
+
+        snapshot.forEach(doc=>{
+
+            activityLog.unshift(doc.data());
+
+        });
+
+        if(currentScreen==="activity"){
+
+            showActivity();
+
+        }
+
+    });
 
 }
 
