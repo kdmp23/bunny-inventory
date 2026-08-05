@@ -1518,6 +1518,8 @@ window.addItem = addItem;
 
 window.showEditItem = showEditItem;
 
+window.showEditItems = showEditItems;
+
 window.showAddItem = showAddItem;
 
 window.showManageInventory = showManageInventory;
