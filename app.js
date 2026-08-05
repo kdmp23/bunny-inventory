@@ -1408,6 +1408,58 @@ async function addItem() {
 
 }
 
+function showEditItems() {
+
+    let html = `
+
+    <div class="container">
+
+        <button
+            class="top-back"
+            onclick="showManageInventory()">
+
+            ← Back
+
+        </button>
+
+        <h1>Edit Items</h1>
+
+    `;
+
+    inventory
+        .filter(item => item.active)
+        .forEach(item => {
+
+            html += `
+
+            <div
+                class="item"
+                onclick="showEditItem('${item.id}')">
+
+                <strong>${item.name}</strong>
+
+                <div class="item-info">
+
+                    ${item.location}
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+    html += `
+
+    </div>
+
+    `;
+
+    app.innerHTML = html;
+
+}
+
 window.login = login;
 
 window.showAttention = showAttention;
@@ -1445,6 +1497,8 @@ window.uploadInventory = uploadInventory;
 window.updateSearch = updateSearch;
 
 window.addItem = addItem;
+
+window.showEditItems = showEditItems;
 
 window.showAddItem = showAddItem;
 
