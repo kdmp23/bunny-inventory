@@ -416,10 +416,12 @@ function showActivity(){
 
         activityLog.forEach(entry =>{
 
-            const time = entry.time.toLocaleTimeString([],{
-                hour:"numeric",
-                minute:"2-digit"
-            });
+            const time = entry.time
+    ? entry.time.toDate().toLocaleTimeString([], {
+          hour: "numeric",
+          minute: "2-digit"
+      })
+    : "Now";
 
             html += `
 
