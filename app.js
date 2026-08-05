@@ -113,6 +113,8 @@ function loadInventory() {
     ...doc.data()
 });
 
+});
+
         console.log("Inventory updated!");
 
         if(currentEmployee === "") return;
