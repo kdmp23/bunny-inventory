@@ -1334,27 +1334,43 @@ function showAddItem(){
 
 }
 
-async function addItem(){
+async function addItem() {
 
-    const item = {
+    const name = document.getElementById("itemName").value.trim();
 
-        name: document.getElementById("itemName").value.trim(),
+    const quantity = Number(document.getElementById("itemQuantity").value);
 
-        quantity: Number(document.getElementById("itemQuantity").value),
+    const minimum = Number(document.getElementById("itemMinimum").value);
 
-        minimum: Number(document.getElementById("itemMinimum").value),
+    const unit = document.getElementById("itemUnit").value.trim();
 
-        unit: document.getElementById("itemUnit").value.trim(),
+    const location = document.getElementById("itemLocation").value;
 
-        location: document.getElementById("itemLocation").value,
+    if (!name || !unit) {
 
-        active: true
+        alert("Please fill in all fields.");
 
-    };
+        return;
+
+    }
 
     await addDoc(
         collection(db, "inventory"),
-        item
+        {
+
+            name,
+
+            quantity,
+
+            minimum,
+
+            unit,
+
+            location,
+
+            active: true
+
+        }
     );
 
     showManageInventory();
@@ -1396,6 +1412,8 @@ window.loadInventory = loadInventory;
 window.uploadInventory = uploadInventory;
 
 window.updateSearch = updateSearch;
+
+window.addItem = addItem;
 
 window.showAddItem = showAddItem;
 
