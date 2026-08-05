@@ -22,6 +22,11 @@ import {
     signInAnonymously
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
+import {
+    ...
+    deleteDoc
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
 const firebaseConfig = {
 
     apiKey: "AIzaSyDpDkjGsPG5Oa1lwaox6PHIKpmIvJ-bRxE",
@@ -1611,9 +1616,21 @@ function showAddEmployee(employee = null) {
 
         <button onclick="saveEmployee(${employee ? `'${employee.id}'` : "null"})">
 
-            ${employee ? "Save Changes" : "Add Employee"}
+    ${employee ? "Save Changes" : "Add Employee"}
 
-        </button>
+</button>
+
+${employee ? `
+
+<button
+    class="danger"
+    onclick="deleteEmployee('${employee.id}')">
+
+    🗑 Delete Employee
+
+</button>
+
+` : ""}
 
     </div>
 
@@ -1707,6 +1724,50 @@ function showEditEmployee(id) {
 
 }
 
+async function deleteEmployee(id) {
+
+    const employee =
+        employees.find(e => e.id === id);
+
+    if (employee.name === currentEmployee) {
+
+        alert("You can't delete your own account.");
+
+        return;
+
+    }
+
+    const managers = employees.filter(
+        e => e.role === "manager"
+    );
+
+    if (
+        employee.role === "manager" &&
+        managers.length === 1
+    ) {
+
+        alert("You can't delete the last manager.");
+
+        return;
+
+    }
+
+    if (!confirm("Delete this employee?")) {
+
+        return;
+
+    }
+
+    await deleteDoc(
+        doc(db, "employee", id)
+    );
+
+    showToast("✓ Employee Deleted");
+
+    showEmployees();
+
+}
+
 window.login = login;
 
 window.showAttention = showAttention;
@@ -1754,6 +1815,8 @@ window.showEditItem = showEditItem;
 window.showEditItems = showEditItems;
 
 window.showAddItem = showAddItem;
+
+window.deleteEmployee = deleteEmployee;
 
 window.showEmployees = showEmployees;
 
