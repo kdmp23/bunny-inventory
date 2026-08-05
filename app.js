@@ -1210,22 +1210,24 @@ function showToast(message){
 
 }
 
-function loadActivity(){
+function loadActivity() {
 
-    onSnapshot(collection(db, "activity"), (snapshot)=>{
+    const q = query(
+        collection(db, "activity"),
+        orderBy("time", "desc"),
+        limit(100)
+    );
+
+    onSnapshot(q, (snapshot) => {
 
         activityLog = [];
 
-        snapshot.forEach(doc=>{
-
-            activityLog.unshift(doc.data());
-
+        snapshot.forEach(doc => {
+            activityLog.push(doc.data());
         });
 
-        if(currentScreen==="activity"){
-
+        if (currentScreen === "activity") {
             showActivity();
-
         }
 
     });
