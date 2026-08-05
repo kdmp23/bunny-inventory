@@ -505,3 +505,29 @@ button:active{
     color:#9CA3AF;
 
 }
+
+select{
+
+    width:100%;
+
+    padding:22px;
+
+    margin:20px 0;
+
+    border:none;
+
+    border-radius:20px;
+
+    background:#232b3a;
+
+    color:white;
+
+    font-size:24px;
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    outline:none;
+
+}
