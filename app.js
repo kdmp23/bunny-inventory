@@ -1,4 +1,4 @@
-k
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
 import {
@@ -713,7 +713,7 @@ function showUpdateItem(id){
     
     currentScreen = "update";
 
-    selectedItem = inventory.find(item => item.id === id);
+    selectedItem = inventory.find(item => item.id == id);
 
     selectedAmount = 0;
 
@@ -1143,7 +1143,7 @@ async function saveInventory(){
     selectedItem.quantity = newStock;
 
 await updateDoc(
-    doc(db, "inventory", selectedItem.id.toString()),
+    doc(db, "inventory", selectedItem.id),
     {
         quantity: newStock
     }
@@ -1327,6 +1327,33 @@ function showAddItem(){
     </div>
 
     `;
+
+}
+
+async function addItem(){
+
+    const item = {
+
+        name: document.getElementById("itemName").value.trim(),
+
+        quantity: Number(document.getElementById("itemQuantity").value),
+
+        minimum: Number(document.getElementById("itemMinimum").value),
+
+        unit: document.getElementById("itemUnit").value.trim(),
+
+        location: document.getElementById("itemLocation").value,
+
+        active: true
+
+    };
+
+    await addDoc(
+        collection(db, "inventory"),
+        item
+    );
+
+    showManageInventory();
 
 }
 
