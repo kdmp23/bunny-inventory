@@ -52,6 +52,8 @@ let currentRole = "employee"; // employee | manager
 
 let currentLocation = "";
 
+let employees = [];
+
 let selectedItem = null;
 let selectedAmount = 0;
 
