@@ -109,8 +109,8 @@ function loadInventory() {
 
         snapshot.forEach(doc => {
             inventory.push({
-    id: doc.id,
-    ...doc.data()
+    ...doc.data(),
+    id: doc.id
 });
 
 });
@@ -1486,9 +1486,12 @@ function showEditItems() {
 
 }
 
-function showEditItem(id){
+function showEditItem(id) {
 
     const item = inventory.find(i => i.id === id);
+
+    console.log(id);
+    console.log(item);
 
     showAddItem(item);
 
