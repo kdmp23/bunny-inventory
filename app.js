@@ -108,8 +108,10 @@ function loadInventory() {
         inventory = [];
 
         snapshot.forEach(doc => {
-            inventory.push(doc.data());
-        });
+            inventory.push({
+    id: doc.id,
+    ...doc.data()
+});
 
         console.log("Inventory updated!");
 
