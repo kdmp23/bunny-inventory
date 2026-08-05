@@ -62,6 +62,8 @@ let previousScreen = "";
 
 let searchText = "";
 
+let searchMode = "update";
+
 let activityLog = [];
 
 let currentScreen = "login";
@@ -1022,7 +1024,9 @@ function goBack(){
 
 }
 
-function showSearch(){
+function showSearch(mode = "update"){
+
+    searchMode = mode;
     
     currentScreen = "search";
     
@@ -1040,7 +1044,13 @@ function showSearch(){
 
         </button>
 
-        <h1>Search</h1>
+       <h1>${
+    searchMode === "update"
+        ? "Search"
+        : searchMode === "edit"
+            ? "Edit Item"
+            : "Delete Item"
+}</h1>
 
         <input
             id="searchInput"
@@ -1116,7 +1126,53 @@ function updateSearch(){
 
             }
 
-            html += createItemCard(item,color);
+            if(searchMode === "update"){
+
+    html += createItemCard(item, color);
+
+}
+else if(searchMode === "edit"){
+
+    html += `
+
+    <div
+        class="item"
+        onclick="showEditItem('${item.id}')">
+
+        <strong>${item.name}</strong>
+
+        <div class="item-info">
+
+            ${item.location}
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+else if(searchMode === "delete"){
+
+    html += `
+
+    <div
+        class="item"
+        onclick="deleteItem('${item.id}')">
+
+        <strong>${item.name}</strong>
+
+        <div class="item-info">
+
+            ${item.location}
+
+        </div>
+
+    </div>
+
+    `;
+
+}
 
         });
 
@@ -1265,13 +1321,13 @@ function showManageInventory(){
 
         </button>
 
-        <button onclick="showEditItems()">
+        <button onclick="showSearch('edit')">
 
             ✏️ Edit Items
 
         </button>
         
-        <button onclick="showDeleteItems()">
+        <button onclick="showSearch('delete')">
 
     🗑 Delete Items
 
@@ -1770,9 +1826,13 @@ async function deleteEmployee(id) {
 
 }
 
-function showDeleteItems() {
+function showDeleteItems(){
 
-    let html = `
+    currentScreen = "deleteItems";
+
+    searchText = "";
+
+    app.innerHTML = `
 
     <div class="container">
 
@@ -1786,39 +1846,20 @@ function showDeleteItems() {
 
         <h1>Delete Items</h1>
 
-    `;
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="Search item..."
+            oninput="updateDeleteSearch()"
+        >
 
-    inventory
-        .filter(item => item.active)
-        .forEach(item => {
-
-            html += `
-
-            <div
-                class="item"
-                onclick="deleteItem('${item.id}')">
-
-                <strong>${item.name}</strong>
-
-                <div class="item-info">
-
-                    ${item.location}
-
-                </div>
-
-            </div>
-
-            `;
-
-        });
-
-    html += `
+        <div id="searchResults"></div>
 
     </div>
 
     `;
 
-    app.innerHTML = html;
+    updateDeleteSearch();
 
 }
 
