@@ -1272,7 +1272,7 @@ function showManageInventory(){
 
 }
 
-function showAddItem(){
+function showAddItem(item = null) {
 
     app.innerHTML = `
 
@@ -1286,45 +1286,55 @@ function showAddItem(){
 
         </button>
 
-        <h1>Add Item</h1>
+        <h1>${item ? "Edit Item" : "Add Item"}</h1>
 
         <input
             id="itemName"
             type="text"
             placeholder="Item Name"
+            value="${item ? item.name : ""}"
         >
 
         <input
             id="itemQuantity"
             type="number"
             placeholder="Starting Quantity"
+            value="${item ? item.quantity : ""}"
         >
 
         <input
             id="itemMinimum"
             type="number"
             placeholder="Minimum Stock"
+            value="${item ? item.minimum : ""}"
         >
 
         <input
             id="itemUnit"
             type="text"
             placeholder="Unit (lb, pcs, oz...)"
+            value="${item ? item.unit : ""}"
         >
 
         <select id="itemLocation">
 
             ${LOCATIONS.map(location => `
-                <option value="${location}">
+
+                <option
+                    value="${location}"
+                    ${item && item.location === location ? "selected" : ""}>
+
                     ${location}
+
                 </option>
+
             `).join("")}
 
         </select>
 
-        <button onclick="addItem()">
+        <button onclick="addItem(${item ? `'${item.id}'` : "null"})">
 
-            Save Item
+            ${item ? "Save Changes" : "Save Item"}
 
         </button>
 
@@ -1460,6 +1470,14 @@ function showEditItems() {
 
 }
 
+function showEditItem(id){
+
+    const item = inventory.find(i => i.id === id);
+
+    showAddItem(item);
+
+}
+
 window.login = login;
 
 window.showAttention = showAttention;
@@ -1498,7 +1516,7 @@ window.updateSearch = updateSearch;
 
 window.addItem = addItem;
 
-window.showEditItems = showEditItems;
+window.showEditItem = showEditItem;
 
 window.showAddItem = showAddItem;
 
