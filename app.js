@@ -1234,6 +1234,102 @@ function loadActivity() {
 
 }
 
+function showManageInventory(){
+
+    app.innerHTML = `
+
+    <div class="container">
+
+        <button
+            class="top-back"
+            onclick="showManager()">
+
+            ← Back
+
+        </button>
+
+        <h1>Manage Inventory</h1>
+
+        <button onclick="showAddItem()">
+
+            ➕ Add Item
+
+        </button>
+
+        <button onclick="showEditItems()">
+
+            ✏️ Edit Items
+
+        </button>
+
+    </div>
+
+    `;
+
+}
+
+function showAddItem(){
+
+    app.innerHTML = `
+
+    <div class="container">
+
+        <button
+            class="top-back"
+            onclick="showManageInventory()">
+
+            ← Back
+
+        </button>
+
+        <h1>Add Item</h1>
+
+        <input
+            id="itemName"
+            type="text"
+            placeholder="Item Name"
+        >
+
+        <input
+            id="itemQuantity"
+            type="number"
+            placeholder="Starting Quantity"
+        >
+
+        <input
+            id="itemMinimum"
+            type="number"
+            placeholder="Minimum Stock"
+        >
+
+        <input
+            id="itemUnit"
+            type="text"
+            placeholder="Unit (lb, pcs, oz...)"
+        >
+
+        <select id="itemLocation">
+
+            ${LOCATIONS.map(location => `
+                <option value="${location}">
+                    ${location}
+                </option>
+            `).join("")}
+
+        </select>
+
+        <button onclick="addItem()">
+
+            Save Item
+
+        </button>
+
+    </div>
+
+    `;
+
+}
+
 window.login = login;
 
 window.showAttention = showAttention;
@@ -1269,3 +1365,7 @@ window.loadInventory = loadInventory;
 window.uploadInventory = uploadInventory;
 
 window.updateSearch = updateSearch;
+
+window.showAddItem = showAddItem;
+
+window.showManageInventory = showManageInventory;
