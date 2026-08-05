@@ -1696,6 +1696,15 @@ function loadEmployees() {
 
 }
 
+function showEditEmployee(id) {
+
+    const employee =
+        employees.find(e => e.id === id);
+
+    showAddEmployee(employee);
+
+}
+
 window.login = login;
 
 window.showAttention = showAttention;
@@ -1723,6 +1732,8 @@ window.resetAdjustment = resetAdjustment;
 window.saveInventory = saveInventory;
 
 window.goBack = goBack;
+
+window.showEditEmployee = showEditEmployee;
 
 window.exitSearch = exitSearch;
 
