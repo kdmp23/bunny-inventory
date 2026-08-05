@@ -486,11 +486,11 @@ function showManager(){
 
         <h1>⚙️ Manager</h1>
 
-        <button>
+        <button onclick="showManageInventory()">
+    
+    📦 Manage Inventory
 
-            📦 Manage Inventory
-
-        </button>
+</button>
 
         <button>
 
