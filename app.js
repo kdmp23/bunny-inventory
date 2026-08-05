@@ -1499,6 +1499,8 @@ function showEditItem(id) {
 
 function showEmployees() {
 
+console.log(employees);
+
     let html = `
 
     <div class="container">
