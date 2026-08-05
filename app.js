@@ -1611,6 +1611,64 @@ function showAddEmployee(employee = null) {
 
 }
 
+async function saveEmployee(id = null) {
+
+    const name =
+        document.getElementById("employeeName")
+        .value
+        .trim();
+
+    const code =
+        document.getElementById("employeeCode")
+        .value
+        .trim();
+
+    const role =
+        document.getElementById("employeeRole")
+        .value;
+
+    if (!name || !code) {
+
+        alert("Please fill in all fields.");
+
+        return;
+
+    }
+
+    const employeeData = {
+
+        name,
+
+        code,
+
+        role
+
+    };
+
+    if (id) {
+
+        await updateDoc(
+            doc(db, "employee", id),
+            employeeData
+        );
+
+        showToast("✓ Employee Updated");
+
+    } else {
+
+        await addDoc(
+            collection(db, "employee"),
+            employeeData
+        );
+
+        showToast("✓ Employee Added");
+
+    }
+
+    showEmployees();
+
+}
+
 window.login = login;
 
 window.showAttention = showAttention;
@@ -1648,6 +1706,8 @@ window.uploadInventory = uploadInventory;
 window.updateSearch = updateSearch;
 
 window.addItem = addItem;
+
+window.saveEmployee = saveEmployee;
 
 window.showEditItem = showEditItem;
 
