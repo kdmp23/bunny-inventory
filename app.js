@@ -1270,6 +1270,12 @@ function showManageInventory(){
             ✏️ Edit Items
 
         </button>
+        
+        <button onclick="showDeleteItems()">
+
+    🗑 Delete Items
+
+</button>
 
     </div>
 
@@ -1764,6 +1770,86 @@ async function deleteEmployee(id) {
 
 }
 
+function showDeleteItems() {
+
+    let html = `
+
+    <div class="container">
+
+        <button
+            class="top-back"
+            onclick="showManageInventory()">
+
+            ← Back
+
+        </button>
+
+        <h1>Delete Items</h1>
+
+    `;
+
+    inventory
+        .filter(item => item.active)
+        .forEach(item => {
+
+            html += `
+
+            <div
+                class="item"
+                onclick="deleteItem('${item.id}')">
+
+                <strong>${item.name}</strong>
+
+                <div class="item-info">
+
+                    ${item.location}
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+    html += `
+
+    </div>
+
+    `;
+
+    app.innerHTML = html;
+
+}
+
+async function deleteItem(id) {
+
+    const item = inventory.find(i => i.id === id);
+
+    if (!item) {
+
+        alert("Item not found.");
+
+        return;
+
+    }
+
+    if (!confirm(`Delete "${item.name}"?`)) {
+
+        return;
+
+    }
+
+    await deleteDoc(
+        doc(db, "inventory", id)
+    );
+
+    showToast("✓ Item Deleted");
+
+    showDeleteItems();
+
+}
+
 window.login = login;
 
 window.showAttention = showAttention;
@@ -1809,6 +1895,10 @@ window.saveEmployee = saveEmployee;
 window.showEditItem = showEditItem;
 
 window.showEditItems = showEditItems;
+
+window.showDeleteItems = showDeleteItems;
+
+window.deleteItem = deleteItem;
 
 window.showAddItem = showAddItem;
 
