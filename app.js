@@ -1527,6 +1527,8 @@ console.log(employees);
 
     `;
 
+console.log(employees);
+
     employees.forEach(employee => {
 
         html += `
