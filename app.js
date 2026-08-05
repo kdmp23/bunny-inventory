@@ -1336,19 +1336,48 @@ function showAddItem(){
 
 async function addItem() {
 
-    const name = document.getElementById("itemName").value.trim();
+    const name =
+        document.getElementById("itemName")
+        .value
+        .trim();
 
-    const quantity = Number(document.getElementById("itemQuantity").value);
+    const quantity =
+        Number(document.getElementById("itemQuantity").value);
 
-    const minimum = Number(document.getElementById("itemMinimum").value);
+    const minimum =
+        Number(document.getElementById("itemMinimum").value);
 
-    const unit = document.getElementById("itemUnit").value.trim();
+    const unit =
+        document.getElementById("itemUnit")
+        .value
+        .trim();
 
-    const location = document.getElementById("itemLocation").value;
+    const location =
+        document.getElementById("itemLocation").value;
 
     if (!name || !unit) {
 
         alert("Please fill in all fields.");
+
+        return;
+
+    }
+
+    if (quantity < 0 || minimum < 0) {
+
+        alert("Quantity and minimum cannot be negative.");
+
+        return;
+
+    }
+
+    const exists = inventory.some(item =>
+        item.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (exists) {
+
+        alert("An item with that name already exists.");
 
         return;
 
@@ -1372,6 +1401,8 @@ async function addItem() {
 
         }
     );
+
+    showToast("✓ Item Added");
 
     showManageInventory();
 
