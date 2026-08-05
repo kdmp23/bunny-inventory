@@ -1053,13 +1053,19 @@ function showSearch(mode = "update"){
 }</h1>
 
         <input
-            id="searchInput"
-            type="text"
-            placeholder="Search inventory..."
-            value="${searchText}"
-            autofocus
-            oninput="updateSearch()"
-        >
+    id="searchInput"
+    type="text"
+    placeholder="${
+        searchMode === "delete"
+            ? "Search item to delete..."
+            : searchMode === "edit"
+                ? "Search item to edit..."
+                : "Search inventory..."
+    }"
+    value="${searchText}"
+    autofocus
+    oninput="updateSearch()"
+>
 
         <div id="searchResults">
 
@@ -1186,7 +1192,16 @@ function exitSearch(){
 
     searchText = "";
 
-    showDashboard();
+    if(searchMode === "update"){
+
+        showDashboard();
+
+    }
+    else{
+
+        showManageInventory();
+
+    }
 
 }
 
@@ -1887,7 +1902,9 @@ async function deleteItem(id) {
 
     showToast("✓ Item Deleted");
 
-    showDeleteItems();
+    searchText = "";
+
+showSearch("delete");
 
 }
 
