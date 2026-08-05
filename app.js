@@ -14,18 +14,14 @@ import {
     serverTimestamp,
     query,
     orderBy,
-    limit
+    limit,
+    deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 import {
     getAuth,
     signInAnonymously
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-
-import {
-    ...
-    deleteDoc
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const firebaseConfig = {
 
