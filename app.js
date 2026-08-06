@@ -275,20 +275,6 @@ async function login() {
 
 }
 
-    const employee = employeeDoc.data();
-
-    currentEmployee = employee.name;
-
-    currentRole = employee.role;
-
-    showDashboard();
-
-}
-
-// ======================================
-// DASHBOARD
-// ======================================
-
 function showDashboard(){
 
 currentScreen = "dashboard";
