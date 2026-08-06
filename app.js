@@ -13,6 +13,7 @@ import {
     onSnapshot,
     serverTimestamp,
     query,
+    where,
     orderBy,
     limit,
     deleteDoc
@@ -233,30 +234,46 @@ function showLogin(){
 
 }
 
-async function login(){
+async function login() {
 
     const code = document
         .getElementById("employeeCode")
         .value
         .trim();
 
-    if(code === ""){
+    if (code === "") {
 
         return;
 
     }
 
-    const employeeDoc = await getDoc(
-        doc(db, "employee", code)
+    const q = query(
+
+        collection(db, "employee"),
+
+        where("code", "==", code)
+
     );
 
-    if(!employeeDoc.exists()){
+    const snapshot = await getDocs(q);
+
+    if (snapshot.empty) {
 
         alert("Employee not found");
 
         return;
 
     }
+
+    const employee = snapshot.docs[0].data();
+
+    currentEmployee = employee.name;
+
+    currentRole = employee.role;
+
+    showDashboard();
+
+}
 
     const employee = employeeDoc.data();
 
